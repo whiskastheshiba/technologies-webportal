@@ -1,0 +1,66 @@
+/* MAIN CSS */ 
+body {
+    color: #000000;
+    font-family: 'Montserrat', sans-serif; /* maybe should be changed */
+    font-weight: 400;
+    background: #ffffff;
+}
+
+/*top bar*/
+.top-bar {
+    padding: 2px 0;
+    background: #000000;
+}
+
+.top-bar .tb-contact p {
+    display: inline-block;
+    margin: 0;
+    color: #FF6F61;
+    font-size: 14px;
+}
+
+.top-bar .tb-contact p i {
+    margin-right: 6px;
+}
+
+.top-bar .tb-contact p:first-child {
+    margin-right: 15px;
+}
+
+.top-bar .tb-menu {
+    font-size: 0;
+    text-align: right;
+}
+
+.top-bar .tb-menu a {
+    color: #FF6F61;
+    font-size: 14px;
+    margin: 0 8px;
+}
+
+.top-bar .tb-menu a:hover {
+    color: #ffffff;
+}
+
+.top-bar .tb-menu a:last-child {
+    margin-right: 0;
+}
+
+.top-bar .tb-menu a::after {
+    position: absolute;
+    content: "/";
+    margin: 1px 0 0 6px;
+    color: #FF6F61;
+    font-size: 14px;
+}
+
+.top-bar .tb-menu a:last-child::after {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .top-bar .tb-contact,
+    .top-bar .tb-menu {
+        text-align: center;
+    }
+}
