@@ -227,3 +227,61 @@ body {
 .cat-news .cn-title a:hover {
     color: #FF6F61;
 }
+
+/**********************************/
+/********** Tab News CSS **********/
+/**********************************/
+.tab-news {
+    position: relative;
+}
+
+.tab-news .col-md-6 {
+    margin-bottom: 60px;
+}
+
+.tab-news .nav.nav-pills .nav-link {
+    color: #ffffff;
+    background: #000000;
+    border-radius: 0;
+}
+
+.tab-news .nav.nav-pills .nav-link:hover,
+.tab-news .nav.nav-pills .nav-link.active {
+    color: #ffffff;
+    background: #FF6F61;
+}
+
+.tab-news .tab-content {
+    padding: 30px 15px 15px 15px;
+    background: rgba(0, 0, 0, .05);
+}
+
+.tab-news .tn-news {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background: #ffffff;
+}
+
+.tab-news .tn-img {
+    width: 150px;
+}
+
+.tab-news .tn-img img {
+    width: 150px;
+}
+
+.tab-news .tn-title {
+    padding: 10px 15px;
+}
+
+.tab-news .tn-title a {
+    color: #000000;
+    font-size: 18px;
+    font-weight: 400;
+    transition: all .3s;
+}
+
+.tab-news .tn-title a:hover {
+    color: #FF6F61;
+}
