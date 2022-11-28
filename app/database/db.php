@@ -69,7 +69,7 @@ function selectOne($table, $params = []) {
 
 $params = [
     'admin' => 1,
-    //'email' => 'tester@test.com'
+    'email' => 'tester@test.com'
 ];
 
 
