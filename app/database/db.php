@@ -99,6 +99,7 @@ function insert($table, $params) {
     $query = $pdo->prepare($sql);
     $query->execute($params);
     dbCheckError($query);
+    return $pdo->lastInsertId();
 }
 
 
@@ -146,4 +147,4 @@ function delete($table, $id) {
     $query->execute();
     dbCheckError($query);
 }
-delete ('test', 12);
+//delete ('test', 12);
