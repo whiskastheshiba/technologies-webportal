@@ -108,4 +108,42 @@ $arrData = [
     'email' => 'tert@re.ru',
     'password' => '1dadadadad'
 ];
-insert('test', $arrData);
+//insert('test', $arrData);
+
+//UPDATE function
+function update($table, $id, $params) {
+    global $pdo;
+    $i = 0;
+    $str = '';
+    foreach ($params as $key => $value){
+        if ($i === 0){
+            $str = $str . $key . " = '" . $value. "'";
+        }
+        else {
+            $str = $str .", ". $key . " = '" . $value. "'";
+        }
+        $i++;
+
+    }
+    $sql = "UPDATE $table SET $str WHERE id = $id";
+    $query = $pdo->prepare($sql);
+    $query->execute($params);
+    dbCheckError($query);
+}
+$param = [
+    'admin' => '0',
+];
+
+update('test', 14, $param);
+
+
+//DELETE function
+function delete($table, $id) {
+    global $pdo;
+
+    $sql = "DELETE FROM $table WHERE id = $id";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+}
+delete ('test', 12);
