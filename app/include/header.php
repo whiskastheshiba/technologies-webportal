@@ -14,6 +14,29 @@
                 <a href="">Privacy</a>
                 <a href="">Terms</a>
                 <a href="">Contact</a>
+                <li>
+                        <?php if (isset($_SESSION['id'])): ?>
+                            <a href="#">
+                                <i class="fa fa-user"></i>
+                                <?php echo $_SESSION['login']; ?>
+                            </a>
+                            <ul>
+                                <?php if ($_SESSION['admin']): ?>
+                                    <li><a href="#">Admin panel</a> </li>
+                                <?php endif; ?>
+                                <li><a href="<?php echo BASE_URL . "logout.php"; ?>">Log out</a> </li>
+                            </ul>
+                        <?php else: ?>
+                            <a href="<?php echo BASE_URL . "log.php"; ?>">
+                                <i class="fa fa-user"></i>
+                                Log in
+                            </a>
+                            <ul>
+                                <li><a href="<?php echo BASE_URL . "reg.php"; ?>">Registration</a> </li>
+                            </ul>
+                        <?php endif; ?>
+
+                    </li>
             </div>
         </div>
     </div>

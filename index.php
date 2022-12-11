@@ -1,4 +1,6 @@
-<?php include("assets/path.php"); ?>
+<?php include("assets/path.php");
+    include("app/database/db.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
