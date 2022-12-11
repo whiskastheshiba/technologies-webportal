@@ -4,6 +4,7 @@ include "app/database/db.php";
 
 $isSubmit = false;
 $errMsg = '';
+$regStatus = '';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $admin = 0;
@@ -12,6 +13,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $passF = trim($_POST['pass-first']);
     $passS = trim($_POST['pass-second']);
 
+
+
     if($login === '' || $email === '' || $passF === '') {
         $errMsg = "Not all fields are filled!";
     }elseif (mb_strlen($login, 'UTF8') <2){
@@ -19,7 +22,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }elseif ($passF !== $passS) {
         $errMsg = "Password should be equal!";
     }
+    
     else {
+        $existence = selectOne('test', ['email' => $email]);
+        if (!empty($existence['email']) && $existence['email'] === $email){
+            $errMsg = "User with that email already exists!";
+        }else {
         $pass = password_hash($passF, PASSWORD_DEFAULT);
         $post = [
             'admin' => $admin,
@@ -28,13 +36,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             'password' => $pass
         ];
     
-        //$id = insert('test', $post);
+        $id = insert('test', $post);
+        $errMsg = "User " . "<strong>" . $login . "</strong>". " has been sucessfully registered!";
         //$last_row = selectOne('test',  ['id' => $id]);
-        tt($post);
+        //tt($post);
     }
     
 }
-
+}
 else {
     echo 'GET';
     $login = ''; //trims spaces
