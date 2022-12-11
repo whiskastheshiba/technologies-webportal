@@ -1,6 +1,7 @@
 <?php
     include "assets/path.php";
     include "app/controllers/users.php";
+    
 ?>
 
 
@@ -18,7 +19,7 @@
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- Custom Styling -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>My blog</title>
@@ -32,17 +33,20 @@
     <form action="reg.php" method="post" class="row justify-content-center">
         <h2>Registration form</h2>
         <div class="mb-3 col-12 col-md-4 err">
+            <p><?=$errMsg?></p>
+        </div>
+        <div class="mb-3 col-12 col-md-4 err">
             <!--<p><?=$errMsg?></p> -->
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <label for="formGroupExampleInput" class="form-label">Your login</label>
-            <input name ="login" type="text" class="form-control" id="formGroupExampleInput" placeholder="enter your login...">
+            <input name ="login" value="<?=$login?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="enter your login...">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input name ="mail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="enter your email...">
+            <input name ="mail" type="email" value="<?=$email?>"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="enter your email...">
             <div id="emailHelp" class="form-text">Your email won't be used for spam!</div>
         </div>
         <div class="w-100"></div>
