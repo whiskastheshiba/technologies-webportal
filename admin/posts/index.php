@@ -30,20 +30,7 @@
 
         <?php include("../../app/include/header-admin.php"); ?>
             <div class="container">
-                <div class="row">
-                    <div class="sidebar col-3">
-                        <ul>
-                            <li>
-                                <a href="">Posts</a>
-                            </li>
-                            <li>
-                                <a href="">Users</a>
-                            </li>
-                            <li>
-                                <a href="">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
+                <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
                         <div class="button row">
                             <a href="create.html" class ="col-2 btn-btn success">Add Post</a>
