@@ -30,25 +30,12 @@
 
         <?php include("../../app/include/header-admin.php"); ?>
             <div class="container">
-                <div class="row">
-                    <div class="sidebar col-3">
-                        <ul>
-                            <li>
-                                <a href="">Posts</a>
-                            </li>
-                            <li>
-                                <a href="">Users</a>
-                            </li>
-                            <li>
-                                <a href="">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
+                <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
-                        <div class="button row">
-                            <a href="create.html" class ="col-2 btn-btn success">Add topic</a>
-                            <span class="col-1></span>
-                            <a href="index.html" class="col-2 btn-btn warning">Manage topics</a>
+                    <div class="button row">
+                            <a href="<?php echo BASE_URL . "admin/topics/create.php";?>" class ="col-2 btn-btn success">Add topic</a>
+                            <span class="col-1"></span>
+                            <a href="<?php echo BASE_URL . "admin/topics/index.php";?>" class="col-2 btn-btn warning">Manage topic</a>
                         </div>
                         <div class="row title-table">
                             <h2>Managing of topics</h2>

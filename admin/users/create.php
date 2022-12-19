@@ -1,6 +1,5 @@
 <?php include("../../assets/path.php");
     include("../../app/database/db.php");
-    include "../../app/controllers/users.php";
 ?>
 
 <!DOCTYPE html>
@@ -30,25 +29,12 @@
 
         <?php include("../../app/include/header-admin.php"); ?>
             <div class="container">
-                <div class="row">
-                    <div class="sidebar col-3">
-                        <ul>
-                            <li>
-                                <a href="">Posts</a>
-                            </li>
-                            <li>
-                                <a href="">Users</a>
-                            </li>
-                            <li>
-                                <a href="">Categories</a>
-                            </li>
-                        </ul>
-                    </div>
+                <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
                         <div class="button row">
-                            <a href="create.html" class ="col-2 btn-btn success">Create</a>
-                            <span class="col-1></span>
-                            <a href="index.html" class="col-2 btn-btn warning">Manage </a>
+                            <a href="<?php echo BASE_URL . "admin/users/create.php";?>" class ="col-2 btn-btn success">Create</a>
+                            <span class="col-1"></span>
+                            <a href="<?php echo BASE_URL . "admin/users/index.php";?>" class="col-2 btn-btn warning">Manage </a>
                         </div>
                         <div class="row title-table">
                             <h2>User creation</h2>
@@ -57,12 +43,12 @@
                             <form action="create.php" method="post">
                                 <div class="col">
                                     <label for="formGroupExampleInput" class="form-label">Your login</label>
-                                    <input name ="login" value="<?=$login?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="enter your login...">
+                                    <input name ="login"  type="text" class="form-control" id="formGroupExampleInput" placeholder="enter your login...">
                                 </div>
                                 
                                 <div class="col">
                                     <label for="exampleInputEmail1" class="form-label">Email</label>
-                                    <input name ="mail" type="email" value="<?=$email?>"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="enter your email...">
+                                    <input name ="mail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="enter your email...">
                                 </div>
                                 
                                 <div class="col">
