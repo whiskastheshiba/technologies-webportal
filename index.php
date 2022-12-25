@@ -1,5 +1,6 @@
-<?php include("assets/path.php");
-    include("app/database/db.php");
+<?php 
+    include "path.php";
+    include "app/controllers/topics.php";
 ?>
 
 <!DOCTYPE html>
@@ -63,38 +64,23 @@
                 </nav>
             </div>
         </div>
-
         <div class="cat-news">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <h2>Sports</h2>
+                        <?php foreach($topics as $key => $topic): ?>
                         <div class="row cn-slider">
                             <div class="col-md-6">
                                 <div class="cn-img">
                                     <img src="img/cats.jpg" />
                                     <div class="cn-title">
-                                        <a href="">Test category 1 </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/Thinking-of-getting-a-cat.png" />
-                                    <div class="cn-title">
-                                        <a href="">Test category 2 </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/pallas-cat-face-close-up-full-width.jpg" />
-                                    <div class="cn-title">
-                                        <a href="">Test category</a>
+                                        <a href=""><?=$topic['name']; ?></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php endforeach; ?>
                     </div>
                     <div class="col-md-6">
                         <h2>Technology</h2>
@@ -193,7 +179,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="tab-news">
             <div class="container">
                 <div class="row">

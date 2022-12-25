@@ -1,5 +1,5 @@
-<?php include "../../path.php";
-    include "../../app/controllers/topics.php"
+<?php include("../../assets/path.php");
+    include("../../app/controllers/topics.php")
     
 ?>
 
@@ -38,13 +38,14 @@
                             <a href="<?php echo BASE_URL . "admin/topics/index.php";?>" class="col-2 btn-btn warning">Manage topic</a>
                         </div>
                         <div class="row title-table">
-                            <h2>Creating a topic</h2>
+                            <h2>Updating a topic</h2>
                         </div>
                         <div class="row add-post">
                             <div class="mb-12 col-12 col-md-12 err">
                                 <p><?=$errMsg?></p>
                             </div>
-                            <form action="create.php" method="post">
+                            <form action="edit.php" method="post">
+                            <input name="id" value="<?=$id;?>" type="hidden">
                                 <div class="col">
                                     <input name="name" value="<?=$name;?>" type="text" class="form-control" placeholder="Title" aria-label="Name of topic">
                                 </div>
@@ -53,7 +54,7 @@
                                     <textarea name="description" class="form-control" id="content" rows="3"><?=$description;?></textarea>
                                 </div>
                                 <div class="col">
-                                    <button name="topic-create"class="btn btn-primary" type="submit">Create a topic</button>
+                                    <button name="topic-edit"class="btn btn-primary" type="submit">Update a topic</button>
                                 </div>
                             </form>
                         </div>

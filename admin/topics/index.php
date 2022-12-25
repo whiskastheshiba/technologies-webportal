@@ -1,5 +1,5 @@
-<?php include("../../assets/path.php");
-    include("../../app/database/db.php");
+<?php include("../../path.php");
+    include("../../app/controllers/topics.php")
     
 ?>
 
@@ -43,13 +43,14 @@
                             <div class="col-5">Name of post</div>
                             <div class="col-4">Controlling</div>
                         </div>
+                        <?php foreach($topics as $key => $topic): ?>
                         <div class="row post">
-                            <div class="id col-1">1</div>
-                            <div class="title col-5">Test</div>
-                            <div class="edit col-2"><a href="">Edit</a></div>
-                            <div class="del col-2"><a href="">Delete</a></div>
+                            <div class="id col-1"><?=$key + 1;?></div>
+                            <div class="title col-5"><?=$topic['name']; ?></div>
+                            <div class="red col-2"><a href="edit.php?id=<?=$topic['id'];?>">edit</a></div>
+                            <div class="del col-2"><a href="edit.php?del_id=<?=$topic['id'];?>">delete</a></div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>  
         <?php include("../../app/include/footer.php"); ?>

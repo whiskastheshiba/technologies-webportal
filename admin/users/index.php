@@ -1,4 +1,4 @@
-<?php include("../../assets/path.php");
+<?php include("../../path.php");
     include("../../app/database/db.php");
     
 ?>
