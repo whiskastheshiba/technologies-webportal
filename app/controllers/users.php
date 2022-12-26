@@ -36,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
     }
     
     else {
-        $existence = selectOne('test', ['email' => $email]);
+        $existence = selectOne('users', ['email' => $email]);
         if (!empty($existence['email']) && $existence['email'] === $email){
             $errMsg = "User with that email already exists!";
         }else {
@@ -48,11 +48,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
             'password' => $pass
         ];
     
-        $id = insert('test', $post);
-        $user = selectOne('test', ['id' => $id]);
+        $id = insert('users', $post);
+        $user = selectOne('users', ['id' => $id]);
 
         userAuth($user);
-        //$last_row = selectOne('test',  ['id' => $id]);
+        //$last_row = selectOne('users',  ['id' => $id]);
         //tt($post);
     }
     
@@ -71,7 +71,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])) {
     if($email === '' || $pass === '') {
         $errMsg = "Not all fields are filled!";
     }else {
-        $existence = selectOne('test', ['email' => $email]);
+        $existence = selectOne('users', ['email' => $email]);
         //tt($existence);
         if($existence && password_verify($pass, $existence['password'
         ])) {

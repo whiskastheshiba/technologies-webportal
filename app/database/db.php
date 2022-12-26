@@ -138,7 +138,7 @@ $param = [
     'admin' => '0',
 ];
 
-update('test', 14, $param);
+update('users', 14, $param);
 
 
 //DELETE function

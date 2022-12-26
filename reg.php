@@ -1,5 +1,5 @@
 <?php
-    include "assets/path.php";
+    include "path.php";
     include "app/controllers/users.php";
     
 ?>

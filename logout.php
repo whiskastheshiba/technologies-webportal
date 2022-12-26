@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "assets/path.php";
+include "path.php";
 
 unset($_SESSION['id']);
 unset($_SESSION['login']);
