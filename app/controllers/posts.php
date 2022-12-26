@@ -9,12 +9,17 @@ $content = '';
 $img = '';
 $topic = '';
 $topics = selectAll('topics');
+$posts = selectAll('posts'); //mass with all posts and topics, which we will use for work
+
+$postsAdm = selectAllFromPostsWithUsers('posts', 'users');
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
     
     $title = trim($_POST['title']); //trims spaces
     $content = trim($_POST['content']);
     $topic = trim($_POST['topic']);
+    $publish = isset($_POST['publish']) ? 1 : 0; //if publish is set then it will be 1, or 0 if not
+
 
     if($title === '' || $content === '' || $topic === '') {
         $errMsg = "Not all fields are filled!";
@@ -27,10 +32,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
             'title' => $title,
             'content' => $content,
             'img' => $_POST['img'],
-            'status' => 1,
+            'status' => $publish,
             'id_topic' => $topic
         ];
-    
+
         $post = insert('posts', $post);
         $post = selectOne('posts', ['id' => $id]);
         header('location: ' . BASE_URL . 'admin/posts/index.php');

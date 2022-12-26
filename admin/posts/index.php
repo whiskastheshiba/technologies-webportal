@@ -1,6 +1,6 @@
-<?php include("../../path.php");
-    include("../../app/database/db.php");
-    
+<?php 
+    include "../../path.php";
+    include "../../app/controllers/posts.php"
 ?>
 
 <!DOCTYPE html>
@@ -44,13 +44,20 @@
                             <div class="col-2">Author</div>
                             <div class="col-4">Controlling</div>
                         </div>
+                        <?php foreach ($postsAdm as $key => $post): ?>
                         <div class="row post">
-                            <div class="id col-1">1</div>
-                            <div class="title col-5">Test</div>
-                            <div class="author col-2">Admin</div>
-                            <div class="edit col-2"><a href="">Edit</a></div>
-                            <div class="del col-2"><a href="">Delete</a></div>
+                            <div class="id col-1"><?=$key +1; ?></div>
+                            <div class="title col-5"><?=$post['title']; ?></div>
+                            <div class="author col-2"><?=$post['username']; ?></div>
+                            <div class="edit col-1"><a href="">Edit</a></div>
+                            <div class="del col-1"><a href="">Delete</a></div>
+                            <?php if ($post['status']): ?>
+                                <div class="status col-2"><a href="">Draft</a></div>
+                            <?php else: ?>
+                                <div class="status col-2"><a href="">Publish</a></div>
+                            <?php endif; ?>
                         </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>  
