@@ -5,7 +5,7 @@ if (!$_SESSION){
     header('location: ' . BASE_URL . 'log.php');
 }
 
-$errMsg = '';
+$errMsg = [];
 $id = '';
 $title = '';
 $content = '';
@@ -27,20 +27,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
         $result = move_uploaded_file($fileTmpName, $destination);
 
         if(strpos($fileType, 'image') === false){
-            die("Error");
+            array_push($errMsg, "Only images can be uploaded.");
         }else{
             $result = move_uploaded_file($fileTmpName, $destination);
-        }
+        
 
         if($result){
             $_POST['img'] = $imgName;
 
         }else{
-            $errMsg = "Error while uploading image";
+            array_push($errMsg, "Error while uploading image");
         }
+    }
     
     }else{
-        $errMsg = "Error while getting the image";
+        array_push($errMsg, "Error while getting the image");
     }
     $title = trim($_POST['title']); //trims spaces
     $content = trim($_POST['content']);
@@ -49,9 +50,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
 
 
     if($title === '' || $content === '' || $topic === '') {
-        $errMsg = "Not all fields are filled!";
+        array_push($errMsg, "Not all fields are filled!");
     }elseif (mb_strlen($title, 'UTF8') <7){
-        $errMsg = "Category should be more than 7 symbols";
+        array_push($errMsg, "Category should be more than 7 symbols");
     }
     else {
         $post = [

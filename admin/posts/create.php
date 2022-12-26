@@ -1,6 +1,6 @@
 <?php 
     include "../../path.php";
-    include "../../app/controllers/posts.php"
+    include "../../app/controllers/posts.php";
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +30,7 @@
 
         <?php include("../../app/include/header-admin.php"); ?>
             <div class="container">
+                <!-- Array output with errors -->
                 <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
                     <div class="button row">
@@ -41,13 +42,14 @@
                             <h2>Adding a post</h2>
                         </div>
                         <div class="row add-post">
+                        <?php include "../../app/helps/errorInfo.php"; ?>
                             <form action="create.php" method="post" enctype="multipart/form-data"> <!-- Will be stored in server's storage !-->
                                 <div class="col mb-4">
-                                    <input name="title" type="text" class="form-control" placeholder="Title" aria-label="First name">
+                                    <input value="<?=$title; ?>" name="title" type="text" class="form-control" placeholder="Title" aria-label="First name">
                                 </div>
                                 <div class="col">
                                     <label for="editor" class="form-label">Post content</label>
-                                    <textarea name="content" id="editor" class="form-control" rows="6"></textarea>
+                                    <textarea name="content" id="editor" class="form-control" rows="6"><?=$content; ?></textarea>
                                 </div>
                                 <div class="input-group col mb-4 mt-4">
                                     <input name="img" type="file" class="form-control" id="inputGroupFile02">
