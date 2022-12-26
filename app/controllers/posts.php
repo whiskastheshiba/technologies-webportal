@@ -1,6 +1,9 @@
 <?php
 
 include SITE_ROOT . "/app/database/db.php";
+if (!$_SESSION){
+    header('location: ' . BASE_URL . 'log.php');
+}
 
 $errMsg = '';
 $id = '';
@@ -14,7 +17,31 @@ $posts = selectAll('posts'); //mass with all posts and topics, which we will use
 $postsAdm = selectAllFromPostsWithUsers('posts', 'users');
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
+    //tt($_FILES);
+    if (!empty($_FILES['img']['name'])) {
+        $imgName = time() . "_" . $_FILES['img']['name'];
+        $fileTmpName = $_FILES['img']['tmp_name'];
+        $destination = ROOT_PATH . "\assets\posts\\" . $imgName;
+        $fileType = $_FILES['img']['type'];
+
+        $result = move_uploaded_file($fileTmpName, $destination);
+
+        if(strpos($fileType, 'image') === false){
+            die("Error");
+        }else{
+            $result = move_uploaded_file($fileTmpName, $destination);
+        }
+
+        if($result){
+            $_POST['img'] = $imgName;
+
+        }else{
+            $errMsg = "Error while uploading image";
+        }
     
+    }else{
+        $errMsg = "Error while getting the image";
+    }
     $title = trim($_POST['title']); //trims spaces
     $content = trim($_POST['content']);
     $topic = trim($_POST['topic']);
