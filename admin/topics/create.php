@@ -41,8 +41,8 @@
                             <h2>Creating a topic</h2>
                         </div>
                         <div class="row add-post">
+                        <?php include "../../app/helps/errorInfo.php"; ?>
                             <div class="mb-12 col-12 col-md-12 err">
-                                <p><?=$errMsg?></p>
                             </div>
                             <form action="create.php" method="post">
                                 <div class="col">

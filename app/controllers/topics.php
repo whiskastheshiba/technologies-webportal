@@ -2,7 +2,7 @@
 
 include SITE_ROOT . "/app/database/db.php";
 
-$errMsg = '';
+$errMsg = [];
 $id = '';
 $name = '';
 $description = '';
@@ -18,14 +18,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-create'])) {
 
 
     if($name === '' || $description === '') {
-        $errMsg = "Not all fields are filled!";
+        array_push($errMsg, "Not all fields are filled!");
     }elseif (mb_strlen($name, 'UTF8') <2){
-        $errMsg = "Category should be more than 2 symbols";
+        array_push($errMsg, "Category should be more than 2 symbols");
     }
     else {
         $existence = selectOne('topics', ['name' => $name]); //UNIQUE
         if (!empty($existence['name']) && $existence['name'] === $name){
-            $errMsg = "This category already exists!";
+            array_push($errMsg, "This category already exists!");
         }else {
         $topic = [
             'name' => $name,
@@ -67,9 +67,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-edit'])) {
 
 
     if($name === '' || $description === '') {
-        $errMsg = "Not all fields are filled!";
+        array_push($errMsg, "Not all fields are filled!");
     }elseif (mb_strlen($name, 'UTF8') <2){
-        $errMsg = "Category should be more than 2 symbols";
+        array_push($errMsg, "Category should be more than 2 symbols");
     }
     else {
         $topic = [

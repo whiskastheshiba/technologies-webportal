@@ -1,5 +1,5 @@
-<?php include "../../path.php";
-    include "../../app/controllers/topics.php";
+<?php include("../../path.php");
+    include "../../app/controllers/users.php"
     
 ?>
 
@@ -33,28 +33,37 @@
                 <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
                         <div class="button row">
-                            <a href="<?php echo BASE_URL . "admin/topics/create.php";?>" class ="col-2 btn-btn success">Add topic</a>
+                            <a href="<?php echo BASE_URL . "admin/users/create.php";?>" class ="col-2 btn-btn success">Create</a>
                             <span class="col-1"></span>
-                            <a href="<?php echo BASE_URL . "admin/topics/index.php";?>" class="col-2 btn-btn warning">Manage topic</a>
+                            <a href="<?php echo BASE_URL . "admin/users/index.php";?>" class="col-2 btn-btn warning">Manage </a>
                         </div>
                         <div class="row title-table">
-                            <h2>Updating a topic</h2>
+                            <h2>User update</h2>
                         </div>
                         <div class="row add-post">
-                            <div class="mb-12 col-12 col-md-12 err">
-                            <?php include "../../app/helps/errorInfo.php"; ?>
-                            </div>
+                        <?php include "../../app/helps/errorInfo.php"; ?>
                             <form action="edit.php" method="post">
-                            <input name="id" value="<?=$id;?>" type="hidden">
+                            <input name ="id" value="<?=$id;?>" type="hidden">
                                 <div class="col">
-                                    <input name="name" value="<?=$name;?>" type="text" class="form-control" placeholder="Title" aria-label="Name of topic">
+                                    <label for="formGroupExampleInput" class="form-label">Login</label>
+                                    <input name ="login" value="<?=$username?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="enter your login...">
+                                </div>
+                      
+                                
+                                <div class="col">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <input name="pass-first" type="password" class="form-control" id="exampleInputPassword1" placeholder="enter your password...">
                                 </div>
                                 <div class="col">
-                                    <label for="content" class="form-label">Description of topic</label>
-                                    <textarea name="description" class="form-control" id="content" rows="3"><?=$description;?></textarea>
+                                    <label for="exampleInputPassword2" class="form-label">Repeat the password</label>
+                                    <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2" placeholder="repeat the password...">
                                 </div>
+                                <input name="admin" class="form-check-input" type="checkbox" id="flexCheckChecked" value='1'>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Admin?
+                                    </label>
                                 <div class="col">
-                                    <button name="topic-edit"class="btn btn-primary" type="submit">Update a topic</button>
+                                    <button name="update-user" class="btn btn-primary" type="submit">Update</button>
                                 </div>
                             </form>
                         </div>
@@ -62,5 +71,6 @@
                 </div>
             </div>  
         <?php include("../../app/include/footer.php"); ?>
+
     </body>
 </html>

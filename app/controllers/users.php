@@ -17,6 +17,8 @@ function userAuth($user){
     }
 }
 
+$users = selectAll('users');
+
 // Code for registration form
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
     $admin = 0;
@@ -137,6 +139,72 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-user'])) {
 else {
     $login = ''; //trims spaces
     $email = '';
+}
+
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
+
+    $id = $_GET['delete_id'];
+    delete('users', $id);
+    header('location: ' . BASE_URL . 'admin/users/index.php');
+}
+
+//USER EDIT IN ADMIN PANEL
+
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['edit_id'])) {
+
+    $user = selectOne('users', ['id' => $_GET['edit_id']]);
+    
+    $id = $user['id'];
+    $admin = $user['admin'];
+    $username = $user['username'];
+    $email = $user['email'];
+}
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update-user'])) {
+    
+    $id = $_POST['id'];
+    $mail = trim($_POST['mail']); //trims spaces
+    $login = trim($_POST['login']);
+    $passF = trim($_POST['pass-first']);
+    $passS = trim($_POST['pass-second']);
+    $admin = isset($_POST['admin']) ? 1 : 0; //if publish is set then it will be 1, or 0 if not
+
+    if($login === '') {
+        array_push($errMsg, "Not all fields are filled!");
+    }elseif (mb_strlen($login, 'UTF8') <2){
+        array_push($errMsg, "Login should be more than 2 symbols");
+    }elseif ($passF !== $passS) {
+        array_push($errMsg, "Password should be equal!");
+    }
+    else {
+        $pass = password_hash($passF, PASSWORD_DEFAULT);
+        if (isset($_POST['admin'])){
+            $admin = 1;
+        };
+        $user = [
+            'admin' => $admin,
+            'username' => $login,
+            'password' => $pass
+        ];
+
+        $user = update('users', $id, $user);
+        header('location: ' . BASE_URL . 'admin/users/index.php');
+
+    }    
+}else {
+    $login = '';
+    $email = '';
+}
+
+//UPDATE function for 'status' changing
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['pub_id'])) { 
+
+    $id = $_GET['pub_id'];
+    $publish = $_GET['publish'];
+
+    $postId = update('posts', $id, ['status' => $publish]);
+    header('location: ' . BASE_URL . 'admin/posts/index.php');
+    exit();
 }
 
 ?>
