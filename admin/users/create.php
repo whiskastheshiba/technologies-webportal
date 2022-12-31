@@ -1,5 +1,6 @@
 <?php include("../../path.php");
-    include("../../app/database/db.php");
+    include "../../app/controllers/users.php"
+    
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +41,7 @@
                             <h2>User creation</h2>
                         </div>
                         <div class="row add-post">
+                        <?php include "../../app/helps/errorInfo.php"; ?>
                             <form action="create.php" method="post">
                                 <div class="col">
                                     <label for="formGroupExampleInput" class="form-label">Your login</label>
@@ -59,13 +61,12 @@
                                     <label for="exampleInputPassword2" class="form-label">Repeat the password</label>
                                     <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2" placeholder="repeat the password...">
                                 </div>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">User</option>
-                                    <option value="2">Admin</option>
-                                </select>
+                                <input name="admin" class="form-check-input" type="checkbox" id="flexCheckChecked" value='1'>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Admin?
+                                    </label>
                                 <div class="col">
-                                    <button class="btn btn-primary" type="submit">Create</button>
+                                    <button name="create-user" class="btn btn-primary" type="submit">Create</button>
                                 </div>
                             </form>
                         </div>

@@ -1,5 +1,5 @@
-<?php include("../../assets/path.php");
-    include("../../app/controllers/topics.php")
+<?php include "../../path.php";
+    include "../../app/controllers/posts.php";
     
 ?>
 
