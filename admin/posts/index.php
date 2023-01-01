@@ -47,7 +47,7 @@
                         <?php foreach ($postsAdm as $key => $post): ?>
                         <div class="row post">
                             <div class="id col-1"><?=$key +1; ?></div>
-                            <div class="title col-5"><?=$post['title']; ?></div>
+                            <div class="title col-5"><?=mb_substr($post['title'], 0, 50, 'UTF-8'). '...'  ?></div>
                             <div class="author col-2"><?=$post['username']; ?></div>
                             <div class="edit col-1"><a href="edit.php?id=<?=$post['id'];?>">Edit</a></div>
                             <div class="del col-1"><a href="edit.php?delete_id=<?=$post['id'];?>">Delete</a></div>

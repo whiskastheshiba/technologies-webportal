@@ -1,6 +1,7 @@
-<?php 
+<?php
     include "path.php";
     include "app/controllers/topics.php";
+    $posts = selectAllFromPostsWithUsersOnIndex('posts', 'users') //only published posts should be shown
 ?>
 
 <!DOCTYPE html>
@@ -65,120 +66,57 @@
             </div>
         </div>
         <div class="cat-news">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>Sports</h2>
-                        <?php foreach($topics as $key => $topic): ?>
-                        <div class="row cn-slider">
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/cats.jpg" />
-                                    <div class="cn-title">
-                                        <a href=""><?=$topic['name']; ?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
+        <div class="container">
+    <div class="content row">
+        <!-- Main Content -->
+        <div class="main-content col-md-9 col-12">
+            <h2>Последние публикации</h2>
+            <?php foreach ($posts as $post): ?>
+                <div class="post row">
+                    <div class="img col-12 col-md-4">
+                        <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
                     </div>
-                    <div class="col-md-6">
-                        <h2>Technology</h2>
-                        <div class="row cn-slider">
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/download.jpg" />
-                                    <div class="cn-title">
-                                        <a href="">Test category</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/GettyImages-1175550351.jpg" />
-                                    <div class="cn-title">
-                                        <a href="">Test category</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/cats-8-jewish-facts-730_x_411.jpg" />
-                                    <div class="cn-title">
-                                        <a href="">Test category</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="post_text col-12 col-md-8">
+                        <h3>
+                            <a href="<?=BASE_URL . 'single.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                        </h3>
+                        <i class="far fa-user"> <?=$post['username'];?></i>
+                        <i class="far fa-calendar"> <?=$post['created_date'];?></i>
+                        <p class="preview-text">
+
+                            <?=mb_substr($post['content'], 0, 55, 'UTF-8'). '...'  ?>
+                        </p>
                     </div>
                 </div>
+            <?php endforeach; ?>
+        </div>
+        <!-- sidebar Content -->
+        <div class="sidebar col-md-3 col-12">
+
+            <div class="section search">
+                <h3>Поиск</h3>
+                <form action="search.php" method="post">
+                    <input type="text" name="search-term" class="text-input" placeholder="Введите искомое слово...">
+                </form>
             </div>
+
+
+            <div class="section topics">
+                <h3>Категории</h3>
+                <ul>
+                    <?php foreach ($topics as $key => $topic): ?>
+                    <li>
+                        <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+
         </div>
 
-        <div class="cat-news">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>Sports</h2>
-                        <div class="row cn-slider">
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/cats.jpg" />
-                                    <div class="cn-title">
-                                        <a href="">Lorem ipsum dolor sit</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/cats-8-jewish-facts-730_x_411.jpg" />
-                                    <div class="cn-title">
-                                        <a href="">Lorem ipsum dolor sit</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/GettyImages-1175550351.jpg" />
-                                    <div class="cn-title">
-                                        <a href="">Lorem ipsum dolor sit</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h2>Technology</h2>
-                        <div class="row cn-slider">
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/download.jpg" />
-                                    <div class="cn-title">
-                                        <a href="">Lorem ipsum dolor sit</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/pallas-cat-face-close-up-full-width.jpg" />
-                                    <div class="cn-title">
-                                        <a href="">Lorem ipsum dolor sit</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="img/Thinking-of-getting-a-cat.png" />
-                                    <div class="cn-title">
-                                        <a href="">Lorem ipsum dolor sit</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+
+</div>
         <div class="tab-news">
             <div class="container">
                 <div class="row">
