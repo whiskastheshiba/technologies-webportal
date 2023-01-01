@@ -70,7 +70,7 @@
     <div class="content row">
         <!-- Main Content -->
         <div class="main-content col-md-9 col-12">
-            <h2>Последние публикации</h2>
+            <h2>Latest news</h2>
             <?php foreach ($posts as $post): ?>
                 <div class="post row">
                     <div class="img col-12 col-md-4">
@@ -94,15 +94,15 @@
         <div class="sidebar col-md-3 col-12">
 
             <div class="section search">
-                <h3>Поиск</h3>
+                <h3>Search</h3>
                 <form action="search.php" method="post">
-                    <input type="text" name="search-term" class="text-input" placeholder="Введите искомое слово...">
+                    <input type="text" name="search-term" class="text-input" placeholder="Type any word...">
                 </form>
             </div>
 
 
             <div class="section topics">
-                <h3>Категории</h3>
+                <h3>Categories</h3>
                 <ul>
                     <?php foreach ($topics as $key => $topic): ?>
                     <li>
