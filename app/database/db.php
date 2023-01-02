@@ -190,3 +190,13 @@ function selectPostFromPostsWithUsersOnSingle($table1, $table2, $id){
     dbCheckError($query);
     return $query->fetch();
 }
+
+function selectTopTopicFromPostsOnIndex($table1){
+    global $pdo;
+    $sql = "SELECT * FROM $table1 WHERE id_topic = 18";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+    return $query->fetchAll();
+
+}
