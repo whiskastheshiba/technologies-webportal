@@ -91,7 +91,7 @@
 
             <div class="section search">
                 <h3>Search</h3>
-                <form action="/" method="post">
+                <form action="search.php" method="post">
                     <input type="text" name="search-term" class="text-input" placeholder="Type any word...">
                 </form>
             </div>
