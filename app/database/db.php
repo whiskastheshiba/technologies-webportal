@@ -172,9 +172,9 @@ function selectAllFromPostsWithUsers($table1, $table2){
 }
 
 // JOIN function with author of posts for index.php page
-function selectAllFromPostsWithUsersOnIndex($table1, $table2){
+function selectAllFromPostsWithUsersOnIndex($table1, $table2, $limit, $offset){
     global $pdo;
-    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.status=1";
+    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.status=1 LIMIT $limit OFFSET $offset";
     $query = $pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);
@@ -216,4 +216,14 @@ function seacrhInTitileAndContent($text, $table1, $table2){
     $query->execute();
     dbCheckError($query);
     return $query->fetchAll();
+}
+
+// Count row in the table (for pagination)
+function countRow($table){
+    global $pdo;
+    $sql = "SELECT Count(*) FROM $table WHERE status = 1";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+    return $query->fetchColumn();
 }
