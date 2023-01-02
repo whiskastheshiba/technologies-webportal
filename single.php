@@ -83,6 +83,7 @@
                 <div class="single_post_text col-12">
                     <?=$post['content'];?>
                 </div>
+                <?php include "app/include/comments.php" ?>
             </div>
 
         </div>
