@@ -1,6 +1,6 @@
-<?php include("../../path.php");
-    include "../../app/controllers/users.php"
-    
+<?php 
+    include "../../path.php";
+    include "../../app/controllers/commentaries.php"
 ?>
 
 <!DOCTYPE html>
@@ -32,32 +32,30 @@
             <div class="container">
                 <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
-                    <div class="button row">
-                            <a href="<?php echo BASE_URL . "admin/users/create.php";?>" class ="col-2 btn btn-success">Create</a>
-                            <span class="col-1"></span>
-                            <a href="<?php echo BASE_URL . "admin/users/index.php";?>" class="col-2 btn btn-warning">Manage </a>
-                        </div>
                         <div class="row title-table">
-                            
-                            <h2>Users</h2>
+                            <h2>Managing of comments</h2>
                             <div class="col-1">ID</div>
-                            <div class="col-2">Login</div>
-                            <div class="col-3">Email</div>
-                            <div class="col-2">Role</div>
+                            <div class="col-5">Text</div>
+                            <div class="col-2">Author</div>
                             <div class="col-4">Controlling</div>
                         </div>
-                        <?php foreach($users as $key => $user) : ?>
+                        <?php foreach ($commentsForAdm as $key => $comment): ?>
                         <div class="row post">
-                            <div class="col-1"><?=$user['id'];?></div>
-                            <div class="col-2"><?=$user['username'];?></div>
-                            <div class="col-3"><?=$user['email'];?></div>
-                            <?php if($user['admin'] == 1): ?>
-                                <div class="col-2">Admin</div>
+                            <div class="id col-1"><?=$comment['id']; ?></div>
+                            <div class="title col-5"><?=mb_substr($comment['comment'], 0, 50, 'UTF-8'). '...'  ?></div>
+                            <?php // Do not output the email address
+                                $user = $comment['email'];
+                                $user = explode('@', $user);
+                                $user = $user[0];
+                            ?>
+                            <div class="author col-3"><?=$user . "@"; ?></div>
+                            <div class="edit col-1"><a href="edit.php?id=<?=$comment['id'];?>">Edit</a></div>
+                            <div class="del col-1"><a href="edit.php?delete_id=<?=$comment['id'];?>">Delete</a></div>
+                            <?php if ($comment['status']): ?>
+                                <div class="status col-1"><a href="edit.php?publish=0&pub_id=<?=$comment['id'];?>">Draft</a></div>
                             <?php else: ?>
-                                <div class="col-2">User</div>
+                                <div class="status col-1"><a href="edit.php?publish=1&pub_id=<?=$comment['id'];?>">Publish</a></div>
                             <?php endif; ?>
-                            <div class="edit col-2"><a href="edit.php?edit_id=<?=$user['id'];?>">Edit</a></div>
-                            <div class="del col-2"><a href="index.php?delete_id=<?=$user['id'];?>">Delete</a></div>
                         </div>
                         <?php endforeach; ?>
                     </div>

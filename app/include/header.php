@@ -22,7 +22,7 @@
                             </a>
                             <ul>
                                 <?php if ($_SESSION['admin']): ?>
-                                    <li><a href="#">Admin panel</a> </li>
+                                    <li><a href="<?php echo BASE_URL . "admin/topics/create.php"; ?>">Admin panel</a> </li>
                                 <?php endif; ?>
                                 <li><a href="<?php echo BASE_URL . "logout.php"; ?>">Log out</a> </li>
                             </ul>

@@ -33,9 +33,9 @@
                 <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
                         <div class="button row">
-                            <a href="<?php echo BASE_URL . "admin/posts/create.php";?>" class ="col-2 btn-btn success">Add Post</a>
+                            <a href="<?php echo BASE_URL . "admin/posts/create.php";?>" class ="col-2 btn btn-success">Add Post</a>
                             <span class="col-1"></span>
-                            <a href="<?php echo BASE_URL . "admin/posts/index.php";?>" class="col-2 btn-btn warning">Manage Posts</a>
+                            <a href="<?php echo BASE_URL . "admin/posts/index.php";?>" class="col-2 btn btn-warning">Manage Posts</a>
                         </div>
                         <div class="row title-table">
                             <h2>Managing of posts</h2>
