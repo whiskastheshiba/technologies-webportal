@@ -1,6 +1,9 @@
 <?php 
     include "../../path.php";
     include "../../app/controllers/posts.php";
+    if(!$_SESSION['admin']) {
+        header('location: ' . BASE_URL);
+    }
 ?>
 
 <!DOCTYPE html>

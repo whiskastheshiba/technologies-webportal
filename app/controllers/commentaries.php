@@ -1,5 +1,6 @@
 <?php
 include_once SITE_ROOT . "/app/database/db.php";
+
 $commentsForAdm = selectAll('comments');
 
 $page = $_GET['post'];

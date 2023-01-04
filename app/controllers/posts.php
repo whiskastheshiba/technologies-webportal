@@ -5,6 +5,7 @@ if (!$_SESSION){
     header('location: ' . BASE_URL . 'log.php');
 }
 
+
 $errMsg = [];
 $id = '';
 $title = '';
