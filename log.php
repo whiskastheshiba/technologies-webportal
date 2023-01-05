@@ -29,23 +29,21 @@
 <div class="container reg_form">
     <form class="row justify-content-center" method="post" action="log.php">
         <h2 class="col-12">Authorisation</h2>
-        <div class="mb-3 col-12 col-md-4 err">
-            <p><?=$errMsg?></p>
-        </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
+            <?php include "app/helps/errorInfo.php"; ?>
             <label for="formGroupExampleInput" class="form-label">Your email (after registration)</label>
             <input name ="mail" type="email" value="<?=$email?>"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="enter your email...">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="введите ваш пароль...">
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="enter your password...">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <button type="submit" name="button-log" class="btn btn-secondary">Login</button>
-            <a href="aut.html">Register</a>
+            <a href="reg.php">Register</a>
         </div>
     </form>
 </div>

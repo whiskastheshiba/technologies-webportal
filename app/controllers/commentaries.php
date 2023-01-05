@@ -20,9 +20,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['goComment'])){
 
 
     if($email === '' || $comment === ''){
-        array_push($errMsg, "Не все поля заполнены!");
+        array_push($errMsg, "Not all fields are filled!");
     }elseif (mb_strlen($comment, 'UTF8') < 50){
-        array_push($errMsg, "Комментарий должен быть длинее 50 символов");
+        array_push($errMsg, "Comment should be longer than 50 symbols");
     }else{
         $user = selectOne('users', ['email' => $email]);
         if ($user['email'] == $email && $user['admin'] == 1){

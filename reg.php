@@ -32,14 +32,9 @@
 <div class="container reg_form">
     <form action="reg.php" method="post" class="row justify-content-center">
         <h2>Registration form</h2>
-        <div class="mb-3 col-12 col-md-4 err">
-            <p><?=$errMsg?></p>
-        </div>
-        <div class="mb-3 col-12 col-md-4 err">
-            <!--<p><?=$errMsg?></p> -->
-        </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
+            <?php include "app/helps/errorInfo.php"; ?>
             <label for="formGroupExampleInput" class="form-label">Your login</label>
             <input name ="login" value="<?=$login?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="enter your login...">
         </div>
@@ -62,7 +57,7 @@
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <button type="submit" class="btn btn-secondary" name="button-reg">Registration</button>
-            <a href="aut.html">Log in</a>
+            <a href="log.php">Log in</a>
         </div>
     </form>
 </div>

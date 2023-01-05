@@ -34,13 +34,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
             if($result){
                 $_POST['img'] = $imgName;
 
-        }else{
-            array_push($errMsg, "Error while uploading image");
+            }else{
+            array_push($errMsg, "Image should be uploaded. Try again");
+            }
         }
-    }
     
     }else{
-        array_push($errMsg, "Error while getting the image");
+        array_push($errMsg, "Error while getting the image. Try again");
     }
     $title = trim($_POST['title']); //trims spaces
     $content = trim($_POST['content']);
@@ -51,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
     if($title === '' || $content === '' || $topic === '') {
         array_push($errMsg, "Not all fields are filled!");
     }elseif (mb_strlen($title, 'UTF8') <7){
-        array_push($errMsg, "Category should be more than 7 symbols");
+        array_push($errMsg, "Title and content should be more than 7 symbols");
     }
     else {
         $post = [
