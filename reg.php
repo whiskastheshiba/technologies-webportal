@@ -27,37 +27,50 @@
 <body>
 
 <?php include("app/include/header.php"); ?>
+<div class="brand">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="b-logo">
+                            <a href="index.php">
+                                <img src="assets/img/logo2.png" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 <!-- END HEADER -->
 <!-- FORM -->
 <div class="container reg_form">
     <form action="reg.php" method="post" class="row justify-content-center">
-        <h2>Registration form</h2>
+        <h2>Reģistrācijas forma</h2>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <?php include "app/helps/errorInfo.php"; ?>
-            <label for="formGroupExampleInput" class="form-label">Your login</label>
-            <input name ="login" value="<?=$login?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="enter your login...">
+            <label for="formGroupExampleInput" class="form-label">Jūsu lietotājvārds</label>
+            <input name ="login" value="<?=$login?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="ievadiet Jūsu lietotājvārdu...">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input name ="mail" type="email" value="<?=$email?>"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="enter your email...">
-            <div id="emailHelp" class="form-text">Your email won't be used for spam!</div>
+            <label for="exampleInputEmail1" class="form-label">Epasts</label>
+            <input name ="mail" type="email" value="<?=$email?>"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ievadiet Jūsu epastu...">
+            <div id="emailHelp" class="form-text">Jūsu e-pasts netiks izmantots spam sūtīšanai!</div>
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input name="pass-first" type="password" class="form-control" id="exampleInputPassword1" placeholder="enter your password...">
+            <label for="exampleInputPassword1" class="form-label">Parole</label>
+            <input name="pass-first" type="password" class="form-control" id="exampleInputPassword1" placeholder="ievadiet Jūsu paroli...">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <label for="exampleInputPassword2" class="form-label">Repeat the password</label>
-            <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2" placeholder="repeat the password...">
+            <label for="exampleInputPassword2" class="form-label">Atkārtojiet paroli</label>
+            <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2" placeholder="atkārtojiet paroli...">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <button type="submit" class="btn btn-secondary" name="button-reg">Registration</button>
-            <a href="log.php">Log in</a>
+            <button type="submit" class="btn btn-secondary" name="button-reg">Reģistrācija</button>
+            <a href="log.php">Ieiet</a>
         </div>
     </form>
 </div>

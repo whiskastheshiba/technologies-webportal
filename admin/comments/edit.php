@@ -1,7 +1,7 @@
 <?php 
     include "../../path.php";
     include "../../app/controllers/commentaries.php";
-    if(!$_SESSION['admin']) {
+    if($_SESSION['admin'] != 1) {
         header('location: ' . BASE_URL);
     }
 ?>
@@ -36,7 +36,7 @@
                 <!-- Array output with errors -->
                 <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
-                        <h2>Edit a comment</h2>
+                        <h2>Komentāra rediģēšana</h2>
 
                         <div class="row add-post">
                         <?php include "../../app/helps/errorInfo.php"; ?>
@@ -46,25 +46,24 @@
                                     <input value="<?=$email; ?>" readonly name="title" type="text" class="form-control" placeholder="Title" aria-label="First name">
                                 </div>
                                 <div class="col">
-                                    <label for="editor" class="form-label">Comment</label>
+                                    <label for="editor" class="form-label">Komentārs</label>
                                     <textarea name="content" id="editor" class="form-control" rows="6"><?=$text1; ?></textarea>
                                 </div>
                                 <div class="form-check">
                                     <?php if($pub) $checked = "checked"; else $checked = "";?>
                                         <input name="publish" class="form-check-input" type="checkbox" id="flexCheckChecked" <?=$checked;?> >
                                         <label class="form-check-label" for="flexCheckChecked">
-                                            Publish
+                                            Publicēt
                                         </label>
                                 </div>
                                 <div class="col col-6">
-                                    <button name="edit_comment" class="btn btn-primary" type="submit">Save</button>
+                                    <button name="edit_comment" class="btn btn-primary" type="submit">Saglabāt</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>  
-        <?php include("../../app/include/footer.php"); ?>
         <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
         <script src="../../js/scripts.js"></script>
     </body>

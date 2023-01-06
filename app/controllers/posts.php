@@ -144,10 +144,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
 
     }    
 }else {
-    $title = isset($_POST['title']) ? 1 : 0; //trims spaces
-    $content = isset($_POST['content']) ? 1 : 0;
-    $publish = isset($_POST['publish']) ? 1 : 0;
-    $topic = isset($_POST['id-topic']) ? 1 : 0;
+    $title = isset($_POST['title']) ? $_POST['title'] : ''; //trims spaces
+    $content = isset($_POST['content']) ? $_POST['content'] : '';
+    $publish = isset($_POST['publish']) ? 1 : '';
+    $topic = isset($_POST['id_topic']) ? $_POST['id_topic'] : '';
 }
 
 //UPDATE function for 'status' changing

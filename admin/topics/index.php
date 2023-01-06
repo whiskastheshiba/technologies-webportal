@@ -1,6 +1,6 @@
 <?php include("../../path.php");
     include("../../app/controllers/topics.php");
-    if(!$_SESSION['admin']) {
+    if($_SESSION['admin'] != 1) {
         header('location: ' . BASE_URL);
     }
        
@@ -36,26 +36,29 @@
                 <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
                     <div class="button row">
-                            <a href="<?php echo BASE_URL . "admin/topics/create.php";?>" class ="col-2 btn btn-success">Add topic</a>
+                            <a href="<?php echo BASE_URL . "admin/topics/create.php";?>" class ="col-2 btn btn-success">Pievienot kategoriju</a>
                             <span class="col-1"></span>
-                            <a href="<?php echo BASE_URL . "admin/topics/index.php";?>" class="col-2 btn btn-warning">Manage topic</a>
+                            <a href="<?php echo BASE_URL . "admin/topics/index.php";?>" class="col-2 btn btn-warning">Kategoriju pārvaldība</a>
                         </div>
                         <div class="row title-table">
-                            <h2>Managing of topics</h2>
+                            <h2>Kategoriju pārvaldība</h2>
                             <div class="col-1">ID</div>
-                            <div class="col-5">Name of post</div>
-                            <div class="col-4">Controlling</div>
+                            <div class="col-5">Nosaukums</div>
+                            <div class="col-4">Pārvaldība</div>
                         </div>
                         <?php foreach($topics as $key => $topic): ?>
                         <div class="row post">
                             <div class="id col-1"><?=$key + 1;?></div>
-                            <div class="title col-5"><?=$topic['name']; ?></div>
-                            <div class="red col-2"><a href="edit.php?id=<?=$topic['id'];?>">edit</a></div>
-                            <div class="del col-2"><a href="index.php?del_id=<?=$topic['id'];?>">delete</a></div>
+                            <?php if(strlen($topic['name']) > 30): ?>
+                                <div class="title col-5"><?=mb_substr($topic['name'], 0, 30, 'UTF-8'). '...'  ?></div>
+                            <?php else: ?>
+                                <div class="title col-5"><?=$topic['name'];?></div>
+                            <?php endif; ?>
+                            <div class="red col-2"><a href="edit.php?id=<?=$topic['id'];?>">Rediģēt</a></div>
+                            <div class="del col-2"><a href="index.php?del_id=<?=$topic['id'];?>">Dzēst</a></div>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>  
-        <?php include("../../app/include/footer.php"); ?>
     </body>
 </html>

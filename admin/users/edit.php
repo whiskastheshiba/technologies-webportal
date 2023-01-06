@@ -1,6 +1,6 @@
 <?php include("../../path.php");
     include "../../app/controllers/users.php";
-    if(!$_SESSION['admin']) {
+    if($_SESSION['admin'] != 1) {
         header('location: ' . BASE_URL);
     }
     
@@ -36,12 +36,12 @@
                 <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
                         <div class="button row">
-                            <a href="<?php echo BASE_URL . "admin/users/create.php";?>" class ="col-2 btn-btn success">Create</a>
+                            <a href="<?php echo BASE_URL . "admin/users/create.php";?>" class ="col-2 btn btn-success">Izveidot lietotāju</a>
                             <span class="col-1"></span>
-                            <a href="<?php echo BASE_URL . "admin/users/index.php";?>" class="col-2 btn-btn warning">Manage </a>
+                            <a href="<?php echo BASE_URL . "admin/users/index.php";?>" class="col-2 btn btn-warning">Lietotāju pārvaldība</a>
                         </div>
                         <div class="row title-table">
-                            <h2>User update</h2>
+                            <h2>Lietotāja rediģēšana</h2>
                         </div>
                         <div class="row add-post">
                         <?php include "../../app/helps/errorInfo.php"; ?>
@@ -49,31 +49,29 @@
                             <input name ="id" value="<?=$id;?>" type="hidden">
                                 <div class="col">
                                     <label for="formGroupExampleInput" class="form-label">Login</label>
-                                    <input name ="login" value="<?=$username?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="enter your login...">
+                                    <input name ="login" value="<?=$username?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="ievadiet lietotājvārdu...">
                                 </div>
                       
                                 
                                 <div class="col">
-                                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input name="pass-first" type="password" class="form-control" id="exampleInputPassword1" placeholder="enter your password...">
+                                    <label for="exampleInputPassword1" class="form-label">Parole</label>
+                                    <input name="pass-first" type="password" class="form-control" id="exampleInputPassword1" placeholder="ievadiet paroli...">
                                 </div>
                                 <div class="col">
-                                    <label for="exampleInputPassword2" class="form-label">Repeat the password</label>
-                                    <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2" placeholder="repeat the password...">
+                                    <label for="exampleInputPassword2" class="form-label">Atkārtojiet paroli</label>
+                                    <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2" placeholder="atkārtojiet paroli...">
                                 </div>
                                 <input name="admin" class="form-check-input" type="checkbox" id="flexCheckChecked" value='1'>
                                     <label class="form-check-label" for="flexCheckChecked">
                                         Admin?
                                     </label>
                                 <div class="col">
-                                    <button name="update-user" class="btn btn-primary" type="submit">Update</button>
+                                    <button name="update-user" class="btn btn-primary" type="submit">Rediģēt</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>  
-        <?php include("../../app/include/footer.php"); ?>
-
     </body>
 </html>

@@ -28,22 +28,22 @@
 <!-- FORM -->
 <div class="container reg_form">
     <form class="row justify-content-center" method="post" action="log.php">
-        <h2 class="col-12">Authorisation</h2>
+        <h2 class="col-12">Autorizēšana</h2>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <?php include "app/helps/errorInfo.php"; ?>
-            <label for="formGroupExampleInput" class="form-label">Your email (after registration)</label>
-            <input name ="mail" type="email" value="<?=$email?>"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="enter your email...">
+            <label for="formGroupExampleInput" class="form-label">Jūsu epasts</label>
+            <input name ="mail" type="email" value="<?=$email?>"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ievadiet Jūsu epastu...">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="enter your password...">
+            <label for="exampleInputPassword1" class="form-label">Parole</label>
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="ievadiet Jūsu praoli...">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <button type="submit" name="button-log" class="btn btn-secondary">Login</button>
-            <a href="reg.php">Register</a>
+            <button type="submit" name="button-log" class="btn btn-secondary">Ieiet</button>
+            <a href="reg.php">Reģistrēties</a>
         </div>
     </form>
 </div>

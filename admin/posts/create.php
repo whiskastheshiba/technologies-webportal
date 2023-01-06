@@ -35,14 +35,57 @@
             <div class="container">
                 <!-- Array output with errors -->
                 <?php include "../../app/include/navbar-admin.php"; ?>
-                    <div class="posts col-9">
-                    <div class="button row">
-                            <a href="<?php echo BASE_URL . "admin/posts/create.php";?>" class ="col-2 btn-btn success">Add Post</a>
-                            <span class="col-1"></span>
-                            <a href="<?php echo BASE_URL . "admin/posts/index.php";?>" class="col-2 btn-btn warning">Manage Posts</a>
+                    <?php if($_SESSION['admin'] == 1): ?>
+                        <div class="posts col-9">
+                        <div class="button row">
+                                <a href="<?php echo BASE_URL . "admin/posts/create.php";?>" class ="col-3 btn btn-success">Pievienot rakstu</a>
+                                <span class="col-1"></span>
+                                <a href="<?php echo BASE_URL . "admin/posts/index.php";?>" class="col-3 btn btn-warning">Pārvaldīt rakstus</a>
+                            </div>
+                            <div class="row title-table">
+                                <h2>Rakstu pievienošana</h2>
+                            </div>
+                            <div class="row add-post">
+                            <?php include "../../app/helps/errorInfo.php"; ?>
+                                <form action="create.php" method="post" enctype="multipart/form-data"> <!-- Will be stored in server's storage !-->
+                                    <div class="col mb-4">
+                                        <input value="<?=$title; ?>" name="title" type="text" class="form-control" placeholder="Nosaukums" aria-label="First name">
+                                    </div>
+                                    <div class="col">
+                                        <label for="editor" class="form-label">Teksts</label>
+                                        <textarea name="content" id="editor" class="form-control" rows="6"><?=$content; ?></textarea>
+                                    </div>
+                                    <div class="input-group col mb-4 mt-4">
+                                        <input name="img" type="file" class="form-control" id="inputGroupFile02">
+                                        <label class="input-group-text" for="inputGroupFile02">Augšupielādēt</label>
+                                    </div>
+                                    <select name="topic" class="form-select mb-2" aria-label="Default select example">
+                                        <option selected>Kategorija</option>
+                                        <?php foreach($topics as $key => $topic): ?>
+                                            <option value="<?=$topic['id'];?>"><?=$topic['name']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <div class="form-check">
+                                        <?php if($_SESSION['admin'] == 2): ?>
+                                            <input name="publish" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked" hidden>
+                                        <?php else: ?>
+                                            <input name="publish" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Publicēt
+                                            </label>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="col col-6">
+                                        <button name="add_post" class="btn btn-primary" type="submit">Pievienot rakstu</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
+                    </div>
+                    <?php else: ?>
+                        <div class="posts col-12">
                         <div class="row title-table">
-                            <h2>Adding a post</h2>
+                            <h2>Rakstu pievienošana</h2>
                         </div>
                         <div class="row add-post">
                         <?php include "../../app/helps/errorInfo.php"; ?>
@@ -51,34 +94,38 @@
                                     <input value="<?=$title; ?>" name="title" type="text" class="form-control" placeholder="Title" aria-label="First name">
                                 </div>
                                 <div class="col">
-                                    <label for="editor" class="form-label">Post content</label>
+                                    <label for="editor" class="form-label">Teksts</label>
                                     <textarea name="content" id="editor" class="form-control" rows="6"><?=$content; ?></textarea>
                                 </div>
                                 <div class="input-group col mb-4 mt-4">
                                     <input name="img" type="file" class="form-control" id="inputGroupFile02">
-                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                    <label class="input-group-text" for="inputGroupFile02">Augšupielādēt</label>
                                 </div>
                                 <select name="topic" class="form-select mb-2" aria-label="Default select example">
-                                    <option selected>Category of the post</option>
+                                    <option selected>Kategorija</option>
                                     <?php foreach($topics as $key => $topic): ?>
                                         <option value="<?=$topic['id'];?>"><?=$topic['name']?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <div class="form-check">
-                                    <input name="publish" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Publish
-                                    </label>
+                                    <?php if($_SESSION['admin'] == 2): ?>
+                                        <input name="publish" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked" hidden>
+                                    <?php else: ?>
+                                        <input name="publish" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked>
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Publicēt
+                                        </label>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="col col-6">
-                                    <button name="add_post" class="btn btn-primary" type="submit">Add a post</button>
+                                    <button name="add_post" class="btn btn-primary" type="submit">Pievienot rakstu</button>
                                 </div>
                             </form>
                         </div>
                     </div>
+                    <?php endif;?>
                 </div>
             </div>  
-        <?php include("../../app/include/footer.php"); ?>
         <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
         <script src="../../js/scripts.js"></script>
     </body>

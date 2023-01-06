@@ -11,16 +11,12 @@
         </div>
         <div class="col-md-6">
             <div class="tb-menu">
-                <ul>
-                <li>
                             <a href="#">
                                 <i class="fa fa-user"></i>
                                 <?php echo $_SESSION['login']; ?>
                             </a>
                             
-                                <li><a href="<?php echo BASE_URL . "logout.php"; ?>">Log out</a> </li>
-</ul>
-                    </li>
+                <a href="<?php echo BASE_URL . "logout.php"; ?>">Iziet</a>
             </div>
         </div>
     </div>

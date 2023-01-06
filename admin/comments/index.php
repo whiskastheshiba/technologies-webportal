@@ -1,7 +1,7 @@
 <?php 
     include "../../path.php";
     include "../../app/controllers/commentaries.php";
-    if(!$_SESSION['admin']) {
+    if($_SESSION['admin'] != 1) {
         header('location: ' . BASE_URL);
     }
 ?>
@@ -36,34 +36,37 @@
                 <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
                         <div class="row title-table">
-                            <h2>Managing of comments</h2>
+                            <h2>Komentāru pārvaldība</h2>
                             <div class="col-1">ID</div>
-                            <div class="col-5">Text</div>
-                            <div class="col-2">Author</div>
-                            <div class="col-4">Controlling</div>
+                            <div class="col-5">Komentārs</div>
+                            <div class="col-3">Autors</div>
+                            <div class="col-3">Pārvaldība</div>
                         </div>
                         <?php foreach ($commentsForAdm as $key => $comment): ?>
                         <div class="row post">
                             <div class="id col-1"><?=$comment['id']; ?></div>
-                            <div class="title col-5"><?=mb_substr($comment['comment'], 0, 50, 'UTF-8'). '...'  ?></div>
+                            <?php if(strlen($comment['comment']) > 30): ?>
+                                <div class="title col-5"><?=mb_substr($comment['comment'], 0, 30, 'UTF-8'). '...'  ?></div>
+                            <?php else: ?>
+                                <div class="title col-5"><?=$comment['comment'];?></div>
+                            <?php endif; ?>
                             <?php // Do not output the email address
                                 $user = $comment['email'];
                                 $user = explode('@', $user);
                                 $user = $user[0];
                             ?>
                             <div class="author col-3"><?=$user . "@"; ?></div>
-                            <div class="edit col-1"><a href="edit.php?id=<?=$comment['id'];?>">Edit</a></div>
-                            <div class="del col-1"><a href="edit.php?delete_id=<?=$comment['id'];?>">Delete</a></div>
+                            <div class="edit col-1"><a href="edit.php?id=<?=$comment['id'];?>">Rediģēt</a></div>
+                            <div class="del col-1"><a href="edit.php?delete_id=<?=$comment['id'];?>">Dzēst</a></div>
                             <?php if ($comment['status']): ?>
-                                <div class="status col-1"><a href="edit.php?publish=0&pub_id=<?=$comment['id'];?>">Draft</a></div>
+                                <div class="status col-1"><a href="edit.php?publish=0&pub_id=<?=$comment['id'];?>">Nepublicēt</a></div>
                             <?php else: ?>
-                                <div class="status col-1"><a href="edit.php?publish=1&pub_id=<?=$comment['id'];?>">Publish</a></div>
+                                <div class="status col-1"><a href="edit.php?publish=1&pub_id=<?=$comment['id'];?>">Publicēt</a></div>
                             <?php endif; ?>
                         </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
             </div>  
-        <?php include("../../app/include/footer.php"); ?>
     </body>
 </html>

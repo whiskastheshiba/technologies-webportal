@@ -34,38 +34,25 @@
     <body>
 
         <?php include("app/include/header.php"); ?>
-
-        <div class="nav-bar">
+        <div class="brand">
             <div class="container">
-                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-                    <a href="#" class="navbar-brand">MENU</a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto">
-                            <a href="<?php echo BASE_URL; ?>" class="nav-item nav-link active">Home</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                                <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">Sub Item 1</a>
-                                    <a href="#" class="dropdown-item">Sub Item 2</a>
-                                </div>
-                            </div>
-                            <a href="single-page.html" class="nav-item nav-link">Single Page</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                        </div>
-                        <div class="social ml-auto">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="b-logo">
+                            <a href="index.php">
+                                <img src="assets/img/logo2.png" alt="Logo">
+                            </a>
                         </div>
                     </div>
-                </nav>
+                    <div class="col-lg-6">
+                        <div class="b-search">
+                        <form action="search.php" method="post">
+                            <input type="text" name="search-term" class="text-input" placeholder="Type any word...">
+                        </form>
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="cat-news">
@@ -81,7 +68,7 @@
                             </div>
                             <div class="post_text col-12 col-md-8">
                                 <h3>
-                                    <a href="<?=BASE_URL . 'single.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
                                 </h3>
                                 <i class="far fa-user"> <?=$post['username'];?></i>
                                 <i class="far fa-calendar"> <?=$post['created_date'];?></i>
@@ -95,28 +82,23 @@
 
                 </div>
                 <!-- sidebar Content -->
-                <div class="sidebar col-md-3 col-12">
-
-                    <div class="section search">
-                        <h3>Search</h3>
-                        <form action="search.php" method="post">
-                            <input type="text" name="search-term" class="text-input" placeholder="Type any word...">
-                        </form>
+                <div class="main content col-md-3 col-12">
+                <div class="sidebar">
+                    <div class="sidebar-widget">
+                        <h2 class="sw-title">News Category</h2>
+                            <div class="category">
+                                <ul>
+                                    <?php foreach ($topics as $key => $topic): ?>
+                                        <li>
+                                            <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-
-
-                    <div class="section topics">
-                        <h3>Categories</h3>
-                        <ul>
-                            <?php foreach ($topics as $key => $topic): ?>
-                            <li>
-                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
-                            </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-
                 </div>
+            </div>
             </div>
         </div>
         <?php include("app/include/footer.php"); ?>

@@ -1,6 +1,6 @@
 <?php include "../../path.php";
     include "../../app/controllers/topics.php"; 
-    if(!$_SESSION['admin']) {
+    if($_SESSION['admin'] != 1) {
         header('location: ' . BASE_URL);
     }
 ?>
@@ -35,12 +35,12 @@
                 <?php include "../../app/include/navbar-admin.php"; ?>
                     <div class="posts col-9">
                         <div class="button row">
-                            <a href="<?php echo BASE_URL . "admin/topics/create.php";?>" class ="col-2 btn-btn success">Add topic</a>
+                            <a href="<?php echo BASE_URL . "admin/topics/create.php";?>" class ="col-3 btn btn-success">Izveidot kategoriju</a>
                             <span class="col-1"></span>
-                            <a href="<?php echo BASE_URL . "admin/topics/index.php";?>" class="col-2 btn-btn warning">Manage topic</a>
+                            <a href="<?php echo BASE_URL . "admin/topics/index.php";?>" class="col-3 btn btn-warning">Kategoriju pārvaldība</a>
                         </div>
                         <div class="row title-table">
-                            <h2>Creating a topic</h2>
+                            <h2>Kategoriju izveidošana</h2>
                         </div>
                         <div class="row add-post">
                         <?php include "../../app/helps/errorInfo.php"; ?>
@@ -51,17 +51,16 @@
                                     <input name="name" value="<?=$name;?>" type="text" class="form-control" placeholder="Title" aria-label="Name of topic">
                                 </div>
                                 <div class="col">
-                                    <label for="content" class="form-label">Description of topic</label>
+                                    <label for="content" class="form-label">Kategorijas apraksts</label>
                                     <textarea name="description" class="form-control" id="content" rows="3"><?=$description;?></textarea>
                                 </div>
                                 <div class="col">
-                                    <button name="topic-create"class="btn btn-primary" type="submit">Create a topic</button>
+                                    <button name="topic-create"class="btn btn-primary" type="submit">Izveidot kategoriju</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>  
-        <?php include("../../app/include/footer.php"); ?>
     </body>
 </html>

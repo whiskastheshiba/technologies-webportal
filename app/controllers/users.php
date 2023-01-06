@@ -11,7 +11,7 @@ function userAuth($user){
     $_SESSION['id'] = $user['id'];
     $_SESSION['login'] = $user['username'];
     $_SESSION['admin'] = $user['admin'];
-    if($_SESSION['admin']){
+    if($_SESSION['admin'] == 1){
         header('location: ' . BASE_URL . "admin/users/index.php");
     }else{
         header('location: ' . BASE_URL);
