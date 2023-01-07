@@ -3,7 +3,8 @@ include SITE_ROOT . "/app/controllers/commentaries.php";
 ?>
 <div class="cpl-md-12 col-12 comments">
     <h3>Komentēt</h3>
-    <form action="<?=BASE_URL . "single.php?post=$page"?>" method="post">
+    <?php include "app/helps/errorInfo.php"; ?>
+    <form action="<?=BASE_URL . "single-page.php?post=$page"?>" method="post">
         <input type="hidden" name="page" value="<?=$page; ?>">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Epasts</label>

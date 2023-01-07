@@ -35,17 +35,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
 
 
     if($login === '' || $email === '' || $passF === '') {
-        array_push($errMsg, "Not all fields are filled!");
+        array_push($errMsg, "Visi lauki ir obligāti!");
     }elseif (mb_strlen($login, 'UTF8') <2){
-        array_push($errMsg, "Login should be more than 2 symbols");
+        array_push($errMsg, "Lietotājvārdam ir jābūt garākām par 2 simboliem.");
     }elseif ($passF !== $passS) {
-        array_push($errMsg, "Password should be equal!");
+        array_push($errMsg, "Paroles nesakrīt.");
+    }
+    elseif (strlen($passF) < 8) {
+        array_push($errMsg, "Parolei jābūt vismaz 9 simbolus garai.");
     }
     
     else {
         $existence = selectOne('users', ['email' => $email]);
         if (!empty($existence['email']) && $existence['email'] === $email){
-            array_push($errMsg, "User with that email already exists!");
+            array_push($errMsg, "Lietotājs ar tādu e-pastu jau eksistē.");
         }else {
         $pass = password_hash($passF, PASSWORD_DEFAULT);
         $post = [
@@ -76,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])) {
     $pass = trim($_POST['password']);
 
     if($email === '' || $pass === '') {
-        array_push($errMsg, "Not all fields are filled!");
+        array_push($errMsg, "Visi lauki ir obligāti!");
     }else {
         $existence = selectOne('users', ['email' => $email]);
         //tt($existence);
@@ -85,7 +88,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])) {
         userAuth($existence);
             //Login
         }else{
-            array_push($errMsg, "Email or password is incorrect!");
+            array_push($errMsg, "Nepareizi ievadīts e-pasts vai parole!");
             //Login error
         }
     }
@@ -108,22 +111,26 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-user'])) {
 
 
     if($login === '' || $email === '' || $passF === '') {
-        array_push($errMsg, "Not all fields are filled!");
+        array_push($errMsg, "Visi lauki ir obligāti.");
     }elseif (mb_strlen($login, 'UTF8') <2){
-        array_push($errMsg, "Login should be more than 2 symbols");
+        array_push($errMsg, "Lietotājvārdam ir jābūt garākām par 2 simboliem.");
     }elseif ($passF !== $passS) {
-        array_push($errMsg, "Password should be equal!");
+        array_push($errMsg, "Paroles nesakrīt.");
+    }
+    elseif (strlen($passF) < 8) {
+        array_push($errMsg, "Parolei jābūt vismaz 9 simbolus garai.");
     }
     
     else {
         $existence = selectOne('users', ['email' => $email]);
         if (!empty($existence['email']) && $existence['email'] === $email){
-            array_push($errMsg, "User with that email already exists!");
+            array_push($errMsg, "Lietotājs ar tādu e-pastu jau eksistē.");
         }else {
         $pass = password_hash($passF, PASSWORD_DEFAULT);
         if (isset($_POST['admin'])){
             $admin = 1;
         };
+        
         $user = [
             'admin' => $admin,
             'username' => $login,
@@ -175,17 +182,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update-user'])) {
     $admin = isset($_POST['admin']) ? 1 : 0; //if publish is set then it will be 1, or 0 if not
 
     if($login === '') {
-        array_push($errMsg, "Not all fields are filled!");
+        array_push($errMsg, "Visi lauki ir obligāti.");
     }elseif (mb_strlen($login, 'UTF8') <2){
-        array_push($errMsg, "Login should be more than 2 symbols");
+        array_push($errMsg, "Lietotājvārdam ir jābūt garākām par 2 simboliem.");
     }elseif ($passF !== $passS) {
-        array_push($errMsg, "Password should be equal!");
+        array_push($errMsg, "Paroles nesakrīt.");
+    }
+    elseif (strlen($passF) < 8) {
+        array_push($errMsg, "Parolei jābūt vismaz 9 simbolus garai.");
     }
     else {
         $pass = password_hash($passF, PASSWORD_DEFAULT);
-        if (isset($_POST['admin'])){
-            $admin = 1;
+        if (isset($_POST['author'])){
+            $admin = 2;
         };
+        
         $user = [
             'admin' => $admin,
             'username' => $login,
@@ -197,6 +208,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update-user'])) {
 
     }    
 }else {
+    
     $login = '';
     $email = '';
 }

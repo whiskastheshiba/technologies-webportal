@@ -60,11 +60,11 @@
                                         <label class="input-group-text" for="inputGroupFile02">Augšupielādēt</label>
                                     </div>
                                     <select name="topic" class="form-select mb-2" aria-label="Default select example">
-                                        <option selected>Kategorija</option>
-                                        <?php foreach($topics as $key => $topic): ?>
-                                            <option value="<?=$topic['id'];?>"><?=$topic['name']?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                            
+                                    <?php foreach($topics as $key => $topic): ?>
+                                        <option value="<?=$topic['id'];?>"><?=$topic['name']?></option>
+                                    <?php endforeach; ?>
+                                </select>
                                     <div class="form-check">
                                         <?php if($_SESSION['admin'] == 2): ?>
                                             <input name="publish" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked" hidden>
@@ -102,7 +102,6 @@
                                     <label class="input-group-text" for="inputGroupFile02">Augšupielādēt</label>
                                 </div>
                                 <select name="topic" class="form-select mb-2" aria-label="Default select example">
-                                    <option selected>Kategorija</option>
                                     <?php foreach($topics as $key => $topic): ?>
                                         <option value="<?=$topic['id'];?>"><?=$topic['name']?></option>
                                     <?php endforeach; ?>

@@ -191,6 +191,7 @@ function selectPostFromPostsWithUsersOnSingle($table1, $table2, $id){
     return $query->fetch();
 }
 
+
 function selectTopTopicFromPostsOnIndex($table1){
     global $pdo;
     $sql = "SELECT * FROM $table1 WHERE id_topic = 18";
@@ -226,4 +227,22 @@ function countRow($table){
     $query->execute();
     dbCheckError($query);
     return $query->fetchColumn();
+}
+
+function views_update ($id) {
+    global $pdo;
+    $sql = "UPDATE posts SET views = views + 1 WHERE id = $id";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+}
+
+function showPostsInDescOrder ($table1) {
+    global $pdo;
+    $sql = "SELECT * FROM $table1 ORDER by views DESC";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+    return $query->fetchAll();
+
 }

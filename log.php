@@ -22,7 +22,61 @@
 </head>
 <body>
 
-<?php include("app/include/header.php"); ?>
+<div class="top-bar">
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="tb-contact">
+                <p><i class="fas fa-envelope"></i>mirka8189@gmail.com</p>
+                <p><i class="fas fa-phone-alt"></i>+37120129697</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="tb-menu">
+                        <?php if (isset($_SESSION['id'])): ?>
+                            <a href="#">
+                                <i class="fa fa-user"></i>
+                                <?php echo $_SESSION['login']; ?>
+                            </a>
+                        
+                                <?php if ($_SESSION['admin'] == 1): ?>
+                                    <a href="<?php echo BASE_URL . "admin/topics/create.php"; ?>">Sistēmas pārvaldība</a>
+                                <?php elseif ($_SESSION['admin'] == 2): ?>
+                                    <a href="<?php echo BASE_URL . "admin/posts/create.php"; ?>">Pievienot rakstu</a> 
+                                <?php endif; ?>
+                                <a href="<?php echo BASE_URL . "logout.php"; ?>">Iziet</a> 
+                            
+                        <?php else: ?>
+                            <a href="<?php echo BASE_URL . "log.php"; ?>">
+                                <i class="fa fa-user"></i>
+                                Autorizēties
+                            </a>
+                            
+                                <a href="<?php echo BASE_URL . "reg.php"; ?>">Reģistrēties</a> 
+                            
+                        <?php endif; ?>
+
+                    
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="brand">
+    
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="b-logo">
+                            <a href="index.php">
+                                <img src="assets/img/logo2.png" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <!-- END HEADER -->
 <!-- FORM -->

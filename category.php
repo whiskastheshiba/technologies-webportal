@@ -1,8 +1,10 @@
 <?php
     include "path.php";
     include "app/controllers/topics.php";
+    
     $posts = selectAll('posts', ['id_topic' => $_GET['id']]);
-
+    
+    $topTopic = selectTopTopicFromPostsOnIndex('posts');
     $category = selectOne('topics', ['id' => $_GET['id']]);
     
 ?>
@@ -11,7 +13,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>_name_ everything about technologies!</title>
+        <title>Geeknews - everything about technologies!</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
         <!-- Favicon -->
@@ -47,7 +49,7 @@
                     <div class="col-lg-6">
                         <div class="b-search">
                         <form action="search.php" method="post">
-                            <input type="text" name="search-term" class="text-input" placeholder="Type any word...">
+                            <input type="text" name="search-term" class="text-input" placeholder="Ievadiet kādu vārdu...">
                         </form>
                             <button><i class="fa fa-search"></i></button>
                         </div>
@@ -60,8 +62,10 @@
             <div class="content row">
         <!-- Main Content -->
                 <div class="main-content col-md-9 col-12">
-                    <h2>Posts from the category <strong><?=$category['name']; ?></strong></h2>
+                    <h2>Raksti no kategorijas <strong><?=$category['name']; ?></strong></h2>
                     <?php foreach ($posts as $post): ?>
+                        <?php $users = selectAll('users', ['id' => $post['id_user']]); ?>
+                            <?php foreach ($users as $user): ?>
                         <div class="post row">
                             <div class="img col-12 col-md-4">
                                 <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
@@ -70,7 +74,7 @@
                                 <h3>
                                     <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
                                 </h3>
-                                <i class="far fa-user"> <?=$post['username'];?></i>
+                                <i class="far fa-user"> <?=$user['username'];?></i>
                                 <i class="far fa-calendar"> <?=$post['created_date'];?></i>
                                 <p class="preview-text">
 
@@ -79,13 +83,15 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
+                    <?php endforeach; ?>
 
                 </div>
+                
                 <!-- sidebar Content -->
                 <div class="main content col-md-3 col-12">
                 <div class="sidebar">
                     <div class="sidebar-widget">
-                        <h2 class="sw-title">News Category</h2>
+                        <h2 class="sw-title">Kategorijas</h2>
                             <div class="category">
                                 <ul>
                                     <?php foreach ($topics as $key => $topic): ?>

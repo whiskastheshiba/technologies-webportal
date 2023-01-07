@@ -1,6 +1,11 @@
 <?php
     include "path.php";
     include "app/controllers/topics.php";
+    if(!$_SESSION){
+        header('location: ' . BASE_URL . "log.php");
+    }
+    
+    views_update($_GET['post']);
     $post = selectPostFromPostsWithUsersOnSingle('posts', 'users', $_GET['post']);
 ?>
 
@@ -70,6 +75,10 @@
                         <div class="sn-container">
                             <div class="sn-img">
                                 <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                            </div>
+                            <div class="info">
+                                <i class="far fa-user"> <?=$post['username'];?></i>
+                                <i class="far fa-calendar"> <?=$post['created_date'];?></i>
                             </div>
                             <div class="sn-content">
                                 <h1 class="sn-title"><?php echo $post['title']; ?></h1>

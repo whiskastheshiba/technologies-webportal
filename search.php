@@ -31,32 +31,27 @@
     </head>
 
     <body>
-
+        
         <?php include("app/include/header.php"); ?>
-
-        <div class="nav-bar">
+        <div class="brand">
             <div class="container">
-                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-                    <a href="#" class="navbar-brand">MENU</a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto">
-                            <a href="<?php echo BASE_URL; ?>" class="nav-item nav-link active">Home</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                        </div>
-                        <div class="social ml-auto">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="b-logo">
+                            <a href="index.php">
+                                <img src="assets/img/logo2.png" alt="Logo">
+                            </a>
                         </div>
                     </div>
-                </nav>
+                    <div class="col-lg-6">
+                        <div class="b-search">
+                        <form action="search.php" method="post">
+                            <input type="text" name="search-term" class="text-input" placeholder="Ievādiet kādu vārdu...">
+                        </form>
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="cat-news">
@@ -64,7 +59,7 @@
     <div class="content row">
         <!-- Main Content -->
         <div class="main-content col-12">
-            <h2>Latest news</h2>
+            <h2>Meklēšanas '<?=$_POST['search-term'] ;?>' rezultāts</h2>
             <?php foreach ($posts as $post): ?>
                 <div class="post row">
                     <div class="img col-12 col-md-4">
@@ -72,7 +67,7 @@
                     </div>
                     <div class="post_text col-12 col-md-8">
                         <h3>
-                            <a href="<?=BASE_URL . 'single.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
                         </h3>
                         <i class="far fa-user"> <?=$post['username'];?></i>
                         <i class="far fa-calendar"> <?=$post['created_date'];?></i>

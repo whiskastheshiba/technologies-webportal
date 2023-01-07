@@ -6,9 +6,11 @@ $commentsForAdm = selectAll('comments');
 $page = $_GET['post'];
 $email = '';
 $comment = '';
+$text1 = '';
+$pub = '';
 $errMsg = [];
 $status = 0;
-$comments = [];
+$comments = selectAll('comments', ['page' => $page, 'status' => 1] );
 
 
 // Creating a comment
@@ -20,9 +22,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['goComment'])){
 
 
     if($email === '' || $comment === ''){
-        array_push($errMsg, "Not all fields are filled!");
+        array_push($errMsg, "Visi lauki ir obligāti");
     }elseif (mb_strlen($comment, 'UTF8') < 50){
-        array_push($errMsg, "Comment should be longer than 50 symbols");
+        array_push($errMsg, "Komentāram ir jābūt lielākam par 50 simboliem");
     }else{
         $user = selectOne('users', ['email' => $email]);
         if ($user['email'] == $email && $user['admin'] == 1){
@@ -80,9 +82,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_comment'])){
     $publish = isset($_POST['publish']) ? 1 : 0;
 
     if($text === ''){
-        array_push($errMsg, "Comment is empty!");
+        array_push($errMsg, "Visi lauki ir obligāti.");
     }elseif (mb_strlen($text, 'UTF8') < 50){
-        array_push($errMsg, "Comment should be longer than 50 symbols");
+        array_push($errMsg, "Komentāram ir jābūt garākām par 50 simboliem.");
     }else{
         $com = [
             'comment' => $text,

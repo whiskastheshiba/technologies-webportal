@@ -12,6 +12,7 @@ $title = '';
 $content = '';
 $img = '';
 $topic = '';
+$views = 0;
 $topics = selectAll('topics');
 $posts = selectAll('posts'); //mass with all posts and topics, which we will use for work
 
@@ -26,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
         $fileType = $_FILES['img']['type'];
 
         if(strpos($fileType, 'image') === false){
-            array_push($errMsg, "Only images can be uploaded.");
+            array_push($errMsg, "Augšupielādēt var tikai attēlus.");
         }else{
             $result = move_uploaded_file($fileTmpName, $destination);
         
@@ -35,12 +36,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
                 $_POST['img'] = $imgName;
 
             }else{
-            array_push($errMsg, "Image should be uploaded. Try again");
+            array_push($errMsg, "Attēls ir obligāts. Mēģiniet vēl reiz.");
             }
         }
     
     }else{
-        array_push($errMsg, "Error while getting the image. Try again");
+        array_push($errMsg, "Kļūda attēlu apstrādāšanā. Mēģiniet vēl reiz.");
     }
     $title = trim($_POST['title']); //trims spaces
     $content = trim($_POST['content']);
@@ -49,9 +50,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
 
 
     if($title === '' || $content === '' || $topic === '') {
-        array_push($errMsg, "Not all fields are filled!");
+        array_push($errMsg, "Visi lauki ir obligāti.");
     }elseif (mb_strlen($title, 'UTF8') <7){
-        array_push($errMsg, "Title and content should be more than 7 symbols");
+        array_push($errMsg, "Nosaukumam un rakstam ir jābūt lielākiem par 7 simboliem.");
     }
     else {
         $post = [
@@ -60,7 +61,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
             'content' => $content,
             'img' => $_POST['img'],
             'status' => $publish,
-            'id_topic' => $topic
+            'id_topic' => $topic,
+            'views' => $views
         ];
 
         $post = insert('posts', $post);
@@ -107,7 +109,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
         $fileType = $_FILES['img']['type'];
 
         if(strpos($fileType, 'image') === false){
-            array_push($errMsg, "Only images can be uploaded.");
+            array_push($errMsg, "Augšupielādēt var tikai attēlus.");
         }else{
             $result = move_uploaded_file($fileTmpName, $destination);
         
@@ -116,18 +118,18 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
                 $_POST['img'] = $imgName;
 
         }else{
-            array_push($errMsg, "Error while uploading image");
+            array_push($errMsg, "Attēls ir obligāts. Mēģiniet vēl reiz.");
         }
     }
     
     }else{
-        array_push($errMsg, "Error while getting the image");
+        array_push($errMsg, "Kļūda attēlu apstrādāšanā. Mēģiniet vēl reiz.");
     }
 
     if($title === '' || $content === '' || $topic === '') {
-        array_push($errMsg, "Not all fields are filled!");
+        array_push($errMsg, "Visi lauki ir obligāti.");
     }elseif (mb_strlen($title, 'UTF8') <7){
-        array_push($errMsg, "Category should be more than 7 symbols");
+        array_push($errMsg, "Nosaukumam ir jābūt lielākam par 7 simboliem.");
     }
     else {
         $post = [

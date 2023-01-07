@@ -19,14 +19,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-create'])) {
 
 
     if($name === '' || $description === '') {
-        array_push($errMsg, "Not all fields are filled!");
+        array_push($errMsg, "Visi lauki ir obligāti.”");
     }elseif (mb_strlen($name, 'UTF8') <2){
-        array_push($errMsg, "Category should be more than 2 symbols");
+        array_push($errMsg, "Nosaukumam ir jābūt lielākam par 2 simboliem");
     }
     else {
         $existence = selectOne('topics', ['name' => $name]); //UNIQUE
         if (!empty($existence['name']) && $existence['name'] === $name){
-            array_push($errMsg, "This category already exists!");
+            array_push($errMsg, "Tāda kategorija jau eksistē datubāzē.");
         }else {
         $topic = [
             'name' => $name,
@@ -65,14 +65,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-edit'])) {
     $name = trim($_POST['name']); //trims spaces
     $description = trim($_POST['description']);
 
-
-
     if($name === '' || $description === '') {
-        array_push($errMsg, "Not all fields are filled!");
+        array_push($errMsg, "Visi lauki ir obligāti.”");
     }elseif (mb_strlen($name, 'UTF8') <2){
-        array_push($errMsg, "Category should be more than 2 symbols");
+        array_push($errMsg, "Nosaukumam ir jābūt lielākam par 2 simboliem");
     }
     else {
+        $existence = selectOne('topics', ['name' => $name]); //UNIQUE
+        if (!empty($existence['name']) && $existence['name'] === $name){
+            array_push($errMsg, "Tāda kategorija jau eksistē datubāzē.");
+        }else {
         $topic = [
             'name' => $name,
             'description' => $description,
@@ -84,6 +86,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-edit'])) {
     
     }
     
+}
 }
 
 //delete a category

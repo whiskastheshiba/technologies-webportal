@@ -22,12 +22,50 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>My blog</title>
 </head>
 <body>
+<div class="top-bar">
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="tb-contact">
+                <p><i class="fas fa-envelope"></i>mirka8189@gmail.com</p>
+                <p><i class="fas fa-phone-alt"></i>+37120129697</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="tb-menu">
+                        <?php if (isset($_SESSION['id'])): ?>
+                            <a href="#">
+                                <i class="fa fa-user"></i>
+                                <?php echo $_SESSION['login']; ?>
+                            </a>
+                        
+                                <?php if ($_SESSION['admin'] == 1): ?>
+                                    <a href="<?php echo BASE_URL . "admin/topics/create.php"; ?>">Sistēmas pārvaldība</a>
+                                <?php elseif ($_SESSION['admin'] == 2): ?>
+                                    <a href="<?php echo BASE_URL . "admin/posts/create.php"; ?>">Pievienot rakstu</a> 
+                                <?php endif; ?>
+                                <a href="<?php echo BASE_URL . "logout.php"; ?>">Iziet</a> 
+                            
+                        <?php else: ?>
+                            <a href="<?php echo BASE_URL . "log.php"; ?>">
+                                <i class="fa fa-user"></i>
+                                Autorizēties
+                            </a>
+                            
+                                <a href="<?php echo BASE_URL . "reg.php"; ?>">Reģistrēties</a> 
+                            
+                        <?php endif; ?>
 
-<?php include("app/include/header.php"); ?>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <div class="brand">
+    
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-12">

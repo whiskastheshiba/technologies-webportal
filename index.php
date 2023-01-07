@@ -6,6 +6,7 @@
     $limit = 2;
     $offset = $limit * ($page - 1);
     $total_pages = round(countRow('posts') / $limit, 0);
+    $postsDescOrder = showPostsInDescOrder('posts');
 
     $posts = selectAllFromPostsWithUsersOnIndex('posts', 'users', $limit, $offset); //only published posts should be shown
 ?>
@@ -35,6 +36,7 @@
     </head>
 
     <body>
+        
 
         <?php include("app/include/header.php"); ?>
 
@@ -51,7 +53,7 @@
                     <div class="col-lg-6">
                         <div class="b-search">
                         <form action="search.php" method="post">
-                            <input type="text" name="search-term" class="text-input" placeholder="Type any word...">
+                            <input type="text" name="search-term" class="text-input" placeholder="Ievādiet kādu vārdu...">
                         </form>
                             <button><i class="fa fa-search"></i></button>
                         </div>
@@ -66,7 +68,7 @@
                 <div class="content row">
         <!-- Main Content -->
                     <div class="main-content col-md-9 col-12">
-                        <h2>Latest news</h2>
+                        <h2>Jaunākās ziņas</h2>
                         <?php foreach ($posts as $post): ?>
                             <div class="post row">
                                 <div class="img col-12 col-md-4">
@@ -91,7 +93,7 @@
             <div class="main content col-md-3 col-12">
                 <div class="sidebar">
                     <div class="sidebar-widget">
-                        <h2 class="sw-title">News Category</h2>
+                        <h2 class="sw-title">Kategorijas</h2>
                             <div class="category">
                                 <ul>
                                     <?php foreach ($topics as $key => $topic): ?>
@@ -103,6 +105,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -318,24 +321,6 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="mn-list">
-                            <h2>Read More</h2>
-                            <ul>
-                                <li><a href="">Lorem ipsum dolor sit amet</a></li>
-                                <li><a href="">Pellentesque tincidunt enim libero</a></li>
-                                <li><a href="">Morbi id finibus diam vel pretium enim</a></li>
-                                <li><a href="">Duis semper sapien in eros euismod sodales</a></li>
-                                <li><a href="">Vestibulum cursus lorem nibh</a></li>
-                                <li><a href="">Morbi ullamcorper vulputate metus non eleifend</a></li>
-                                <li><a href="">Etiam vitae elit felis sit amet</a></li>
-                                <li><a href="">Nullam congue massa vitae quam</a></li>
-                                <li><a href="">Proin sed ante rutrum</a></li>
-                                <li><a href="">Curabitur vel lectus</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
