@@ -50,8 +50,8 @@
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
-                            <a href="<?php echo BASE_URL; ?>" class="nav-item nav-link active">Home</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                            <a href="<?php echo BASE_URL; ?>" class="nav-item nav-link active">Jaunumi</a>
+                            <a href="contact.php" class="nav-item nav-link">Sazinieties ar mums</a>
                         </div>
                         <div class="social ml-auto">
                             <a href=""><i class="fab fa-twitter"></i></a>

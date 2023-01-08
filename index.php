@@ -3,10 +3,11 @@
     include "app/controllers/topics.php";
 
     $page = isset($_GET['page']) ? $_GET['page']: 1;
-    $limit = 2;
+    $limit = 4;
     $offset = $limit * ($page - 1);
     $total_pages = round(countRow('posts') / $limit, 0);
     $postsDescOrder = showPostsInDescOrder('posts');
+    $postsRandom = showRandomPosts('posts');
 
     $posts = selectAllFromPostsWithUsersOnIndex('posts', 'users', $limit, $offset); //only published posts should be shown
 ?>
@@ -67,7 +68,7 @@
             <div class="container">
                 <div class="content row">
         <!-- Main Content -->
-                    <div class="main-content col-md-9 col-12">
+                    <div class="main-content col-md-8 col-12">
                         <h2>Jaunākās ziņas</h2>
                         <?php foreach ($posts as $post): ?>
                             <div class="post row">
@@ -80,6 +81,7 @@
                                     </h3>
                                     <i class="far fa-user"> <?=$post['username'];?></i>
                                     <i class="far fa-calendar"> <?=$post['created_date'];?></i>
+                                    <i class="far fa-eye"> <?=$post['views'];?></i>
                                     <p class="preview-text">
 
                                         <?=mb_substr($post['content'], 0, 55, 'UTF-8'). '...'  ?>
@@ -90,7 +92,7 @@
             <!-- Pagination -->
             <?php include("app/include/pagination.php"); ?>
             </div>
-            <div class="main content col-md-3 col-12">
+            <div class="main content col-md-4 col-12">
                 <div class="sidebar">
                     <div class="sidebar-widget">
                         <h2 class="sw-title">Kategorijas</h2>
@@ -116,94 +118,25 @@
                     <div class="col-md-6">
                         <ul class="nav nav-pills nav-justified">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#featured">Featured News</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#popular">Popular News</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#latest">Latest News</a>
+                                <a class="nav-link active" data-toggle="pill" href="#featured">Visvairāk skatīts</a>
                             </li>
                         </ul>
 
                         <div class="tab-content">
                             <div id="featured" class="container tab-pane active">
+                                <?php foreach ($postsDescOrder as $postsD): ?>
                                 <div class="tn-news">
                                     <div class="tn-img">
-                                        <img src="img/download.jpg" />
+                                        <img src="<?=BASE_URL . 'assets/posts/' . $postsD['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
                                     </div>
                                     <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
+                                    
+                                        <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=substr($postsD['title'], 0, 80) . '...'  ?></a>
+                                
+                                        <i class="far fa-eye"> <?=$postsD['views'];?></i>
                                     </div>
                                 </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="popular" class="container tab-pane fade">
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="latest" class="container tab-pane fade">
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -211,94 +144,23 @@
                     <div class="col-md-6">
                         <ul class="nav nav-pills nav-justified">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#m-viewed">Most Viewed</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#m-read">Most Read</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#m-recent">Most Recent</a>
+                                <a class="nav-link active" data-toggle="pill" href="#m-viewed">Nejauši raksti</a>
                             </li>
                         </ul>
 
                         <div class="tab-content">
                             <div id="m-viewed" class="container tab-pane active">
-                                <div class="tn-news">
+                                <?php foreach ($postsRandom as $postsR): ?>
+                                    <div class="tn-news">
                                     <div class="tn-img">
-                                        <img src="img/download.jpg" />
+                                        <img src="<?=BASE_URL . 'assets/posts/' . $postsR['img'] ?>" alt="<?=$postsR['title']?>" class="img-thumbnail">
                                     </div>
                                     <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
+                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=substr($postsR['title'], 0, 80) . '...'  ?></a>
+                                        <i class="far fa-eye"> <?=$postsR['views'];?></i>
                                     </div>
                                 </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="m-read" class="container tab-pane fade">
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="m-recent" class="container tab-pane fade">
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="img/download.jpg" />
-                                    </div>
-                                    <div class="tn-title">
-                                        <a href="">Lorem ipsum dolor sit amet</a>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -310,9 +172,11 @@
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="row">
+                            <?php $category = selectOne('topics', ['id' => '2']); ?>
+                            <h2><?=$category['name']; ?>
                         <?php foreach ($posts as $post): ?>
+                            <?php if($post['id_topic'] == 2): ?>
                             <div class="col-md-4">
-                                
                                 <div class="mn-img">
                                 <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
                                     <div class="mn-title">
@@ -320,6 +184,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                         </div>
                     </div>
@@ -327,5 +192,6 @@
             </div>
         </div>
         <?php include("app/include/footer.php"); ?>
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
     </body>
 </html>

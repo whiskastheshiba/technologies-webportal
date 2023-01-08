@@ -10,6 +10,7 @@ $text1 = '';
 $pub = '';
 $errMsg = [];
 $status = 0;
+
 $comments = selectAll('comments', ['page' => $page, 'status' => 1] );
 
 

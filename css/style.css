@@ -1294,9 +1294,6 @@ form div.err {
     font-size: 0.8rem;
 }
 
-body{
-    background: #f6f6f6;
-}
 a{
     text-decoration: none;
     color: inherit;
@@ -1406,4 +1403,9 @@ COMMENTS
     display: inline-flex;
     margin: 0.5rem 1.5rem 1.5rem 0;
     font-weight: 500;
+}
+
+.img-thumbnail{
+    width: 100%;
+    height: auto;
 }

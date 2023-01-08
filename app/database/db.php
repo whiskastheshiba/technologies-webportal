@@ -164,7 +164,7 @@ function selectAllFromPostsWithUsers($table1, $table2){
     t1.id_topic,
     t1.created_date,
     t2.username 
-    FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id";
+    FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id" ;
     $query = $pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);
@@ -174,7 +174,7 @@ function selectAllFromPostsWithUsers($table1, $table2){
 // JOIN function with author of posts for index.php page
 function selectAllFromPostsWithUsersOnIndex($table1, $table2, $limit, $offset){
     global $pdo;
-    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.status=1 LIMIT $limit OFFSET $offset";
+    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.status=1 ORDER by p.created_date DESC LIMIT $limit OFFSET $offset";
     $query = $pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);
@@ -239,7 +239,17 @@ function views_update ($id) {
 
 function showPostsInDescOrder ($table1) {
     global $pdo;
-    $sql = "SELECT * FROM $table1 ORDER by views DESC";
+    $sql = "SELECT * FROM $table1 ORDER by views DESC LIMIT 5";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+    return $query->fetchAll();
+
+}
+
+function showRandomPosts ($table1) {
+    global $pdo;
+    $sql = "SELECT * FROM $table1 ORDER by RAND() LIMIT 5";
     $query = $pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);

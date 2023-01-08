@@ -4,7 +4,8 @@
     if(!$_SESSION){
         header('location: ' . BASE_URL . "log.php");
     }
-    
+    $postsDescOrder = showPostsInDescOrder('posts');
+    $postsRandom = showRandomPosts('posts');
     views_update($_GET['post']);
     $post = selectPostFromPostsWithUsersOnSingle('posts', 'users', $_GET['post']);
 ?>
@@ -47,7 +48,7 @@
             <div class="col-lg-6">
                 <div class="b-search">
                 <form action="search.php" method="post">
-                    <input type="text" name="search-term" class="text-input" placeholder="Type any word...">
+                    <input type="text" name="search-term" class="text-input" placeholder="Ievadiet kādu vārdu...">
                 </form>
                     <button><i class="fa fa-search"></i></button>
                 </div>
@@ -59,9 +60,9 @@
         <div class="breadcrumb-wrap">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">News</a></li>
-                    <li class="breadcrumb-item active">News details</li>
+                    <li class="breadcrumb-item"><a href="index.php">Jaunumi</a></li>
+                    <li class="breadcrumb-item"><a href="index.php">Jaunākās ziņas</a></li>
+                    <li class="breadcrumb-item active">Ziņa</li>
                 </ul>
             </div>
         </div>
@@ -89,7 +90,7 @@
                     <div class="col-lg-4">
                         <div class="sidebar">
                             <div class="sidebar-widget">
-                                <h2 class="sw-title">News Category</h2>
+                                <h2 class="sw-title">Kategorijas</h2>
                                 <div class="category">
                                     <ul>
                                         <?php foreach ($topics as $key => $topic): ?>
@@ -108,104 +109,63 @@
             </div>
         </div>
         <!-- Single News End-->        
-        
-        <!-- Footer Start -->
-        <div class="footer">
+        <div class="tab-news">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="title">Get in Touch</h3>
-                            <div class="contact-info">
-                                <p><i class="fa fa-map-marker"></i>123 News Street, NY, USA</p>
-                                <p><i class="fa fa-envelope"></i>info@example.com</p>
-                                <p><i class="fa fa-phone"></i>+123-456-7890</p>
-                                <div class="social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
-                                    <a href=""><i class="fab fa-youtube"></i></a>
+                    <div class="col-md-6">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#featured">Visvairāk skatīts</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="featured" class="container tab-pane active">
+                            <?php foreach ($postsDescOrder as $postsD): ?>
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="<?=BASE_URL . 'assets/posts/' . $postsD['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                                    </div>
+                                    <div class="tn-title">
+                                    
+                                        <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=substr($postsD['title'], 0, 80) . '...'  ?></a>
+                                
+                                        <i class="far fa-eye"> <?=$postsD['views'];?></i>
+                                    </div>
                                 </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="title">Useful Links</h3>
-                            <ul>
-                                <li><a href="#">Lorem ipsum</a></li>
-                                <li><a href="#">Pellentesque</a></li>
-                                <li><a href="#">Aenean vulputate</a></li>
-                                <li><a href="#">Vestibulum sit amet</a></li>
-                                <li><a href="#">Nam dignissim</a></li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="title">Quick Links</h3>
-                            <ul>
-                                <li><a href="#">Lorem ipsum</a></li>
-                                <li><a href="#">Pellentesque</a></li>
-                                <li><a href="#">Aenean vulputate</a></li>
-                                <li><a href="#">Vestibulum sit amet</a></li>
-                                <li><a href="#">Nam dignissim</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="title">Newsletter</h3>
-                            <div class="newsletter">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class aptent taciti sociosqu
-                                </p>
-                                <form>
-                                    <input class="form-control" type="email" placeholder="Your email here">
-                                    <button class="btn">Submit</button>
-                                </form>
+                    <div class="col-md-6">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#m-viewed">Nejauši raksti</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="m-viewed" class="container tab-pane active">
+                            <?php foreach ($postsRandom as $postsR): ?>
+                                    <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="<?=BASE_URL . 'assets/posts/' . $postsR['img'] ?>" alt="<?=$postsR['title']?>" class="img-thumbnail">
+                                    </div>
+                                    <div class="tn-title">
+                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=substr($postsR['title'], 0, 80) . '...'  ?></a>
+                                        <i class="far fa-eye"> <?=$postsR['views'];?></i>
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Footer End -->
-        
-        <!-- Footer Menu Start -->
-        <div class="footer-menu">
-            <div class="container">
-                <div class="f-menu">
-                    <a href="">Terms of use</a>
-                    <a href="">Privacy policy</a>
-                    <a href="">Cookies</a>
-                    <a href="">Accessibility help</a>
-                    <a href="">Advertise with us</a>
-                    <a href="">Contact us</a>
-                </div>
-            </div>
-        </div>
-        <!-- Footer Menu End -->
+        <?php include "app/include/footer.php"; ?>
 
-        <!-- Footer Bottom Start -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 copyright">
-                        <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-                    </div>
-
-                    <div class="col-md-6 template-by">
-                        <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer Bottom End -->
 
         <!-- Back to Top -->
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
