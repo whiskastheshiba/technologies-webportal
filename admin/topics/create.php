@@ -48,7 +48,7 @@
                             </div>
                             <form action="create.php" method="post">
                                 <div class="col">
-                                    <input name="name" value="<?=$name;?>" type="text" class="form-control" placeholder="Title" aria-label="Name of topic">
+                                    <input name="name" value="<?=$name;?>" type="text" class="form-control" placeholder="Nosaukums" aria-label="Name of topic">
                                 </div>
                                 <div class="col">
                                     <label for="content" class="form-label">Kategorijas apraksts</label>

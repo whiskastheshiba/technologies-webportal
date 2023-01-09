@@ -42,6 +42,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-create'])) {
 }
 }
 else {
+    
     $name = ''; //trims spaces
     $description = '';
 }
@@ -66,15 +67,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-edit'])) {
     $description = trim($_POST['description']);
 
     if($name === '' || $description === '') {
-        array_push($errMsg, "Visi lauki ir obligāti.”");
+        array_push($errMsg, "Visi lauki ir obligāti.");
     }elseif (mb_strlen($name, 'UTF8') <2){
         array_push($errMsg, "Nosaukumam ir jābūt lielākam par 2 simboliem");
     }
     else {
-        $existence = selectOne('topics', ['name' => $name]); //UNIQUE
-        if (!empty($existence['name']) && $existence['name'] === $name){
-            array_push($errMsg, "Tāda kategorija jau eksistē datubāzē.");
-        }else {
         $topic = [
             'name' => $name,
             'description' => $description,
@@ -87,7 +84,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-edit'])) {
     }
     
 }
-}
+
 
 //delete a category
 if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {

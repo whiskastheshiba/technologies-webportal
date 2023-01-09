@@ -40,7 +40,7 @@
 
                         <div class="row add-post">
                         <?php include "../../app/helps/errorInfo.php"; ?>
-                            <form action="edit.php" method="post" > <!-- Will be stored in server's storage !-->
+                            <form action="<?=BASE_URL . "admin/comments/edit.php?id=$id"?>" method="post" > <!-- Will be stored in server's storage !-->
                                 <input type="hidden" name="id" value="<?=$id;?>">
                                 <div class="col mb-4">
                                     <input value="<?=$email; ?>" readonly name="title" type="text" class="form-control" placeholder="Title" aria-label="First name">

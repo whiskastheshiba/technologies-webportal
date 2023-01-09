@@ -46,7 +46,7 @@
                             <div class="mb-12 col-12 col-md-12 err">
                             <?php include "../../app/helps/errorInfo.php"; ?>
                             </div>
-                            <form action="edit.php" method="post">
+                            <form action="<?=BASE_URL . "admin/topics/edit.php?id=$id"?>" method="post">
                             <input name="id" value="<?=$id;?>" type="hidden">
                                 <div class="col">
                                     <input name="name" value="<?=$name;?>" type="text" class="form-control" placeholder="Title" aria-label="Name of topic">

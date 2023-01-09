@@ -73,6 +73,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
     
 }
 else {
+    
     $id = '';
     $title = ''; //trims spaces
     $content = '';
@@ -82,9 +83,10 @@ else {
 
 //edit post
 
-if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) { //we use method GET and there is ID
 
-    $post = selectOne('posts', ['id' => $_GET['id']]);
+    
+    $post = selectOne('posts', ['id' => $_GET['id']]); 
     $id = $post['id'];
     $title = $post['title'];
     $content = $post['content'];
@@ -96,11 +98,14 @@ if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
     
+    
+    //header('location: ' . BASE_URL . 'admin/posts/edit.php?id=' . $_POST['id']);
     $id = $_POST['id'];
     $title = trim($_POST['title']); //trims spaces
     $content = trim($_POST['content']);
     $topic = trim($_POST['topic']);
     $publish = isset($_POST['publish']) ? 1 : 0; //if publish is set then it will be 1, or 0 if not
+    
 
     if (!empty($_FILES['img']['name'])) {
         $imgName = time() . "_" . $_FILES['img']['name'];
@@ -110,6 +115,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
 
         if(strpos($fileType, 'image') === false){
             array_push($errMsg, "Augšupielādēt var tikai attēlus.");
+            
         }else{
             $result = move_uploaded_file($fileTmpName, $destination);
         
@@ -124,10 +130,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
     
     }else{
         array_push($errMsg, "Kļūda attēlu apstrādāšanā. Mēģiniet vēl reiz.");
+        
     }
 
     if($title === '' || $content === '' || $topic === '') {
         array_push($errMsg, "Visi lauki ir obligāti.");
+        
     }elseif (mb_strlen($title, 'UTF8') <7){
         array_push($errMsg, "Nosaukumam ir jābūt lielākam par 7 simboliem.");
     }

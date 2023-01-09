@@ -45,10 +45,10 @@
                         </div>
                         <div class="row add-post">
                         <?php include "../../app/helps/errorInfo.php"; ?>
-                            <form action="edit.php" method="post">
+                            <form action="<?=BASE_URL . "admin/users/edit.php?edit_id=$id"?>" method="post">
                             <input name ="id" value="<?=$id;?>" type="hidden">
                                 <div class="col">
-                                    <label for="formGroupExampleInput" class="form-label">Login</label>
+                                    <label for="formGroupExampleInput" class="form-label">Lietotājvārds</label>
                                     <input name ="login" value="<?=$username?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="ievadiet lietotājvārdu...">
                                 </div>
                       

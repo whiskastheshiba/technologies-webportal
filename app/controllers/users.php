@@ -163,7 +163,6 @@ if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
 //USER EDIT IN ADMIN PANEL
 
 if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['edit_id'])) {
-
     $user = selectOne('users', ['id' => $_GET['edit_id']]);
     
     $id = $user['id'];
@@ -174,8 +173,10 @@ if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['edit_id'])) {
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update-user'])) {
     
+    $user = selectOne('users', ['id' => $_GET['edit_id']]); //added for the future need to be rechecked
+    $username = $user['username'];
     $id = $_POST['id'];
-    $mail = trim($_POST['mail']); //trims spaces
+    //$mail = trim($_POST['mail']); //trims spaces
     $login = trim($_POST['login']);
     $passF = trim($_POST['pass-first']);
     $passS = trim($_POST['pass-second']);
@@ -183,6 +184,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update-user'])) {
 
     if($login === '') {
         array_push($errMsg, "Visi lauki ir obligāti.");
+
     }elseif (mb_strlen($login, 'UTF8') <2){
         array_push($errMsg, "Lietotājvārdam ir jābūt garākām par 2 simboliem.");
     }elseif ($passF !== $passS) {

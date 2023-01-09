@@ -192,6 +192,5 @@
             </div>
         </div>
         <?php include("app/include/footer.php"); ?>
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
     </body>
 </html>

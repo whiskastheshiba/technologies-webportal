@@ -91,7 +91,7 @@
                         <?php include "../../app/helps/errorInfo.php"; ?>
                             <form action="create.php" method="post" enctype="multipart/form-data"> <!-- Will be stored in server's storage !-->
                                 <div class="col mb-4">
-                                    <input value="<?=$title; ?>" name="title" type="text" class="form-control" placeholder="Title" aria-label="First name">
+                                    <input value="<?=$title; ?>" name="title" type="text" class="form-control" placeholder="Nosaukums" aria-label="First name">
                                 </div>
                                 <div class="col">
                                     <label for="editor" class="form-label">Teksts</label>
