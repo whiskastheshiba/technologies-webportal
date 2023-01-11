@@ -25,37 +25,33 @@
         <!-- CSS Libraries -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="lib/slick/slick.css" rel="stylesheet">
-        <link href="lib/slick/slick-theme.css" rel="stylesheet">
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
     </head>
-
     <body>
-    <?php include("app/include/header.php"); ?>
-
-<div class="brand">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="b-logo">
-                    <a href="index.php">
-                        <img src="assets/img/logo2.png" alt="Logo">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="b-search">
-                <form action="search.php" method="post">
-                    <input type="text" name="search-term" class="text-input" placeholder="Ievadiet kādu vārdu...">
-                </form>
-                    <button><i class="fa fa-search"></i></button>
+        <?php include("app/include/header.php"); ?>
+        <div class="brand">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="b-logo">
+                            <a href="index.php">
+                                <img src="assets/img/logo2.png" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="b-search">
+                        <form action="search.php" method="post">
+                            <input type="text" name="search-term" class="text-input" placeholder="Ievadiet kādu vārdu...">
+                        </form>
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-wrap">
             <div class="container">
@@ -67,9 +63,9 @@
             </div>
         </div>
         <!-- Breadcrumb End -->
-        
+
         <!-- Single News Start-->
-        <div class="single-news">
+         <div class="single-news">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
@@ -83,7 +79,7 @@
                             </div>
                             <div class="sn-content">
                                 <h1 class="sn-title"><?php echo $post['title']; ?></h1>
-                                    <?=$post['content'];?>
+                                <?=$post['content'];?>
                             </div>
                         </div>   
                     </div>
@@ -94,17 +90,16 @@
                                 <div class="category">
                                     <ul>
                                         <?php foreach ($topics as $key => $topic): ?>
-                                        <li>
-                                            <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
-                                        </li>
+                                            <li>
+                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
+                                            </li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php include "app/include/comments.php" ?> 
-                    
+                    <?php include "app/include/comments.php" ?>     
                 </div>
             </div>
         </div>
@@ -118,45 +113,40 @@
                                 <a class="nav-link active" data-toggle="pill" href="#featured">Visvairāk skatīts</a>
                             </li>
                         </ul>
-
                         <div class="tab-content">
                             <div id="featured" class="container tab-pane active">
-                            <?php foreach ($postsDescOrder as $postsD): ?>
-                                <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="<?=BASE_URL . 'assets/posts/' . $postsD['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                                <?php foreach ($postsDescOrder as $postsD): ?>
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="<?=BASE_URL . 'assets/posts/' . $postsD['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=substr($postsD['title'], 0, 80) . '...'  ?></a>
+                                            <i class="far fa-eye"> <?=$postsD['views'];?></i>
+                                        </div>
                                     </div>
-                                    <div class="tn-title">
-                                    
-                                        <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=substr($postsD['title'], 0, 80) . '...'  ?></a>
-                                
-                                        <i class="far fa-eye"> <?=$postsD['views'];?></i>
-                                    </div>
-                                </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-6">
                         <ul class="nav nav-pills nav-justified">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="pill" href="#m-viewed">Nejauši raksti</a>
                             </li>
                         </ul>
-
                         <div class="tab-content">
                             <div id="m-viewed" class="container tab-pane active">
-                            <?php foreach ($postsRandom as $postsR): ?>
+                                <?php foreach ($postsRandom as $postsR): ?>
                                     <div class="tn-news">
-                                    <div class="tn-img">
-                                        <img src="<?=BASE_URL . 'assets/posts/' . $postsR['img'] ?>" alt="<?=$postsR['title']?>" class="img-thumbnail">
+                                        <div class="tn-img">
+                                            <img src="<?=BASE_URL . 'assets/posts/' . $postsR['img'] ?>" alt="<?=$postsR['title']?>" class="img-thumbnail">
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=substr($postsR['title'], 0, 80) . '...'  ?></a>
+                                            <i class="far fa-eye"> <?=$postsR['views'];?></i>
+                                        </div>
                                     </div>
-                                    <div class="tn-title">
-                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=substr($postsR['title'], 0, 80) . '...'  ?></a>
-                                        <i class="far fa-eye"> <?=$postsR['views'];?></i>
-                                    </div>
-                                </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -165,18 +155,7 @@
             </div>
         </div>
         <?php include "app/include/footer.php"; ?>
-
-
-        <!-- Back to Top -->
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
         <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/slick/slick.min.js"></script>
-
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
     </body>
 </html>

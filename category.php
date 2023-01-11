@@ -3,7 +3,6 @@
     include "app/controllers/topics.php";
     
     $posts = selectAll('posts', ['id_topic' => $_GET['id']]);
-    
     $topTopic = selectTopTopicFromPostsOnIndex('posts');
     $category = selectOne('topics', ['id' => $_GET['id']]);
     
@@ -34,7 +33,6 @@
     </head>
 
     <body>
-
         <?php include("app/include/header.php"); ?>
         <div class="brand">
             <div class="container">
@@ -48,9 +46,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="b-search">
-                        <form action="search.php" method="post">
-                            <input type="text" name="search-term" class="text-input" placeholder="Ievadiet kādu vārdu...">
-                        </form>
+                            <form action="search.php" method="post">
+                                <input type="text" name="search-term" class="text-input" placeholder="Ievadiet kādu vārdu...">
+                            </form>
                             <button><i class="fa fa-search"></i></button>
                         </div>
                     </div>
@@ -58,53 +56,51 @@
             </div>
         </div>
         <div class="cat-news">
-        <div class="container">
-            <div class="content row">
-        <!-- Main Content -->
-                <div class="main-content col-md-9 col-12">
-                    <h2>Raksti no kategorijas <strong><?=$category['name']; ?></strong></h2>
-                    <?php foreach ($posts as $post): ?>
-                        <?php $users = selectAll('users', ['id' => $post['id_user']]); ?>
+            <div class="container">
+                <div class="content row">
+                    <!-- Main Content -->
+                    <div class="main-content col-md-9 col-12">
+                        <h2>Raksti no kategorijas <strong><?=$category['name']; ?></strong></h2>
+                        <?php foreach ($posts as $post): ?>
+                            <?php $users = selectAll('users', ['id' => $post['id_user']]); ?>
                             <?php foreach ($users as $user): ?>
-                        <div class="post row">
-                            <div class="img col-12 col-md-4">
-                                <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
-                            </div>
-                            <div class="post_text col-12 col-md-8">
-                                <h3>
-                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
-                                </h3>
-                                <i class="far fa-user"> <?=$user['username'];?></i>
-                                <i class="far fa-calendar"> <?=$post['created_date'];?></i>
-                                <p class="preview-text">
+                                <div class="post row">
+                                    <div class="img col-12 col-md-4">
+                                        <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                                    </div>
+                                    <div class="post_text col-12 col-md-8">
+                                        <h3>
+                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                        </h3>
+                                        <i class="far fa-user"> <?=$user['username'];?></i>
+                                        <i class="far fa-calendar"> <?=$post['created_date'];?></i>
+                                        <p class="preview-text">
+                                            <?=mb_substr($post['content'], 0, 55, 'UTF-8'). '...'  ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
 
-                                    <?=mb_substr($post['content'], 0, 55, 'UTF-8'). '...'  ?>
-                                </p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                    <?php endforeach; ?>
-
-                </div>
-                
-                <!-- sidebar Content -->
-                <div class="main content col-md-3 col-12">
-                <div class="sidebar">
-                    <div class="sidebar-widget">
-                        <h2 class="sw-title">Kategorijas</h2>
-                            <div class="category">
-                                <ul>
-                                    <?php foreach ($topics as $key => $topic): ?>
-                                        <li>
-                                            <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
+                    <!-- sidebar Content -->
+                    <div class="main content col-md-3 col-12">
+                        <div class="sidebar">
+                            <div class="sidebar-widget">
+                                <h2 class="sw-title">Kategorijas</h2>
+                                <div class="category">
+                                    <ul>
+                                        <?php foreach ($topics as $key => $topic): ?>
+                                            <li>
+                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
         <?php include("app/include/footer.php"); ?>

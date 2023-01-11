@@ -31,7 +31,6 @@
     </head>
 
     <body>
-        
         <?php include("app/include/header.php"); ?>
         <div class="brand">
             <div class="container">
@@ -45,9 +44,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="b-search">
-                        <form action="search.php" method="post">
-                            <input type="text" name="search-term" class="text-input" placeholder="Ievādiet kādu vārdu...">
-                        </form>
+                            <form action="search.php" method="post">
+                                <input type="text" name="search-term" class="text-input" placeholder="Ievādiet kādu vārdu...">
+                            </form>
                             <button><i class="fa fa-search"></i></button>
                         </div>
                     </div>
@@ -55,36 +54,33 @@
             </div>
         </div>
         <div class="cat-news">
-        <div class="container">
-    <div class="content row">
-        <!-- Main Content -->
-        <div class="main-content col-12">
-            <h2>Meklēšanas '<?=$_POST['search-term'] ;?>' rezultāts</h2>
-            <?php foreach ($posts as $post): ?>
-                <div class="post row">
-                    <div class="img col-12 col-md-4">
-                        <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
-                    </div>
-                    <div class="post_text col-12 col-md-8">
-                        <h3>
-                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
-                        </h3>
-                        <i class="far fa-user"> <?=$post['username'];?></i>
-                        <i class="far fa-calendar"> <?=$post['created_date'];?></i>
-                        <i class="far fa-calendar"> <?=$post['views'];?></i>
-                        <p class="preview-text">
-
-                            <?=mb_substr($post['content'], 0, 55, 'UTF-8'). '...'  ?>
-                        </p>
+            <div class="container">
+                <div class="content row">
+                    <!-- Main Content -->
+                    <div class="main-content col-12">
+                        <h2>Meklēšanas '<?=$_POST['search-term'] ;?>' rezultāts</h2>
+                        <?php foreach ($posts as $post): ?>
+                            <div class="post row">
+                                <div class="img col-12 col-md-4">
+                                    <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                                </div>
+                                <div class="post_text col-12 col-md-8">
+                                    <h3>
+                                        <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                    </h3>
+                                    <i class="far fa-user"> <?=$post['username'];?></i>
+                                    <i class="far fa-calendar"> <?=$post['created_date'];?></i>
+                                    <i class="far fa-calendar"> <?=$post['views'];?></i>
+                                    <p class="preview-text">
+                                        <?=mb_substr($post['content'], 0, 55, 'UTF-8'). '...'  ?>
+                                    </p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
-
-
-    </div>
-
-</div>
         <?php include("app/include/footer.php"); ?>
     </body>
 </html>

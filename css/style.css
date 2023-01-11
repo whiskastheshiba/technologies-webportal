@@ -11,6 +11,8 @@ body {
 a {
     color: #FF6F61;
     transition: 0.5s;
+    text-decoration: none;
+    color: inherit;
 }
 
 a:hover,
@@ -45,66 +47,14 @@ h6 {
     font-weight: 400;
 }
 
-.back-to-top {
-    position: fixed;
-    display: none;
-    background: #FF6F61;
-    color: #ffffff;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    line-height: 1;
-    font-size: 16px;
-    right: 15px;
-    bottom: 15px;
-    transition: background 0.5s;
-    border-radius: 4px;
-    z-index: 11;
-}
-
-.back-to-top:hover {
-    background: #000000;
-}
-
-.back-to-top i {
-    padding-top: 9px;
-    color: #ffffff;
-}
-
-
 /**********************************/
 /********* Form Input CSS *********/
 /**********************************/
 .form-control,
-.custom-select {
-    width: 100%;
-    height: 35px;
-    padding: 5px 15px;
-    color: #999999;
-    border: 1px solid #cccccc;
-    margin-bottom: 15px
-}
 
-.form-control:focus,
-.custom-select:focus {
+.form-control:focus{
     box-shadow: none;
     border-color: #FF6F61;
-}
-
-.custom-radio,
-.custom-checkbox {
-    margin-bottom: 15px;
-}
-
-.custom-radio .custom-control-label::before,
-.custom-checkbox .custom-control-label::before {
-    border-color: #cccccc;
-}
-
-.custom-radio .custom-control-input:checked~.custom-control-label::before,
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    color: #ffffff;
-    background: #FF6F61;
 }
 
 button.btn {
@@ -118,7 +68,6 @@ button.btn:hover {
     background: #FF6F61;
     border-color: #FF6F61;
 }
-
 
 /**********************************/
 /*********** Top Bar CSS **********/
@@ -180,7 +129,6 @@ button.btn:hover {
         text-align: center;
     }
 }
-
 
 /**********************************/
 /*********** Brand CSS ************/
@@ -372,117 +320,6 @@ button.btn:hover {
     color: #FF6F61;
 }
 
-
-/**********************************/
-/********** Top News CSS **********/
-/**********************************/
-.top-news {
-    position: relative;
-    width: 100%;
-    padding: 30px 0 0 0;
-}
-
-.top-news .tn-img {
-    position: relative;
-    overflow: hidden;
-}
-
-.top-news .tn-img img {
-    width: 100%;
-}
-
-.top-news .tn-img:hover img {
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
-}
-
-.top-news .tn-title {
-    position: absolute;
-    top: 0; 
-    right: 0;
-    bottom: 0; 
-    left: 0;
-    padding: 15px 10px 15px 20px;
-    background-image: linear-gradient(rgba(0, 0, 0, .0), rgba(0, 0, 0, .3), rgba(0, 0, 0, .9));
-    display: flex;
-    align-items: flex-end;
-}
-
-.top-news .tn-title a {
-    display: block;
-    width: 100%;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 400;
-    transition: .3s;
-}
-
-.top-news .tn-left .tn-title a {
-    font-size: 30px;
-    font-weight: 600;
-}
-
-.top-news .tn-title a:hover {
-    color: #FF6F61;
-}
-
-.top-news .tn-left {
-    margin-bottom: 30px;
-}
-
-.top-news .tn-right {
-    margin-bottom: 60px;
-    padding: 0 30px;
-}
-
-.top-news .tn-right .col-md-6 {
-    padding: 0;
-}
-
-.top-news .slick-prev,
-.top-news .slick-next {
-    width: 28px;
-    height: 28px;
-    z-index: 1;
-    transition: .5s;
-    color: #ffffff;
-    background: #000000;
-    border-radius: 4px;
-}
-
-.top-news .slick-prev {
-    left: 30px;
-}
-
-.top-news .slick-next {
-    right: 30px;
-}
-
-.top-news .slick-prev:hover,
-.top-news .slick-prev:focus,
-.top-news .slick-next:hover,
-.top-news .slick-next:focus {
-    color: #ffffff;
-    background: #FF6F61;
-}
-
-.top-news .slick-prev::before,
-.top-news .slick-next::before {
-    font-family: "Font Awesome 5 Free";
-    font-size: 18px;
-    font-weight: 900;
-    color: #ffffff;
-}
-
-.top-news .slick-prev::before {
-    content: "\f104";
-}
-
-.top-news .slick-next::before {
-    content: "\f105";
-}
-
-
 /**********************************/
 /******* Category News CSS ********/
 /**********************************/
@@ -566,7 +403,6 @@ button.btn:hover {
 .tab-news .tn-title a:hover {
     color: #FF6F61;
 }
-
 
 
 /**********************************/
@@ -690,7 +526,6 @@ button.btn:hover {
 .breadcrumb-wrap .breadcrumb .breadcrumb-item.active {
     color: #353535;
 }
-
 
 /**********************************/
 /********* Single News CSS ********/
@@ -816,7 +651,6 @@ button.btn:hover {
 .single-news .sn-slider .slick-next::before {
     content: "\f105";
 }
-
 
 /**********************************/
 /*********** Sidebar CSS **********/
@@ -1242,48 +1076,6 @@ button.btn:hover {
     border-right: none;
 }
 
-
-/**********************************/
-/******** Footer Bottom CSS *******/
-/**********************************/
-.footer-bottom {
-    position: relative;
-    padding: 25px 0;
-    background: #000000;
-}
-
-.footer-bottom .copyright {
-    text-align: left;
-}
-
-.footer-bottom .template-by {
-    text-align: right;
-}
-
-.footer-bottom .copyright p,
-.footer-bottom .template-by p {
-    color: #ffffff;
-    font-weight: 400;
-    margin: 0;
-}
-
-.footer-bottom .copyright p a,
-.footer-bottom .template-by p a {
-    font-weight: 600;
-}
-
-.footer-bottom .copyright p a:hover,
-.footer-bottom .template-by p a:hover {
-    color: #ffffff;
-}
-
-@media (max-width: 768.98px) {
-    .footer-bottom .copyright,
-    .footer-bottom .template-by {
-        text-align: center; 
-    } 
-}
-
 /*
 FORMS
 */
@@ -1294,10 +1086,6 @@ form div.err {
     font-size: 0.8rem;
 }
 
-a{
-    text-decoration: none;
-    color: inherit;
-}
 input{
     padding: 10px 12px;
     display: block;
@@ -1310,36 +1098,16 @@ input{
 }
 
 /*
-    SINGLE_POST
- */
-.single_post{
-    margin-bottom: 30px;
-}
-.single_post .info{
-    margin: 20px 0;
-}
-.single_post .info i{
-    display: inline-block;
-    margin-right: 20px;
-}
-.single_post a{
-    text-decoration: underline;
-}
-.single_post a:hover{
-    text-decoration: none;
-    color: #008489;
-}
-/*
 FORMS
  */
-.reg_form h2{
+.reg-form h2{
     text-align: center;
     margin: 30px 0;
 }
-.reg_form input{
+.reg-form input{
     height: 3.3rem;
 }
-.reg_form a {
+.reg-form a {
     font-size: 1.2em;
     transition: all .3s;
     color: #5c5b5b;
@@ -1347,16 +1115,12 @@ FORMS
     margin-left: 60px;
 }
 
-.reg_form a:hover {
+.reg-form a:hover {
     margin-left: 55px;
     transition: all .3s;
 }
- .mn-img {
-    object-fit: cover;
-  height: 30vh;
-}
 
- .mn-img img {
+.mn-img img {
     object-fit: cover;
     height: 150px;
     width: 300px;

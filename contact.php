@@ -5,11 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <head>
         <meta charset="utf-8">
-        <title>Bootstrap News Template - Free HTML Templates</title>
+        <title>Geeknews - everything about technologies!</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="Bootstrap News Template - Free HTML Templates" name="keywords">
-        <meta content="Bootstrap News Template - Free HTML Templates" name="description">
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
@@ -19,18 +18,17 @@
 
         <!-- CSS Libraries -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="lib/slick/slick.css" rel="stylesheet">
-        <link href="lib/slick/slick-theme.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet"> <!-- social media icons -->
+
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
     </head>
-
     <body>
         <!-- Top Bar Start -->
         <?php include("app/include/header.php"); ?>
-
         <div class="brand">
             <div class="container">
                 <div class="row align-items-center">
@@ -43,9 +41,9 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="b-search">
-                        <form action="search.php" method="post">
-                            <input type="text" name="search-term" class="text-input" placeholder="Ievādiet kādu vārdu...">
-                        </form>
+                            <form action="search.php" method="post">
+                                <input type="text" name="search-term" class="text-input" placeholder="Ievādiet kādu vārdu...">
+                            </form>
                             <button><i class="fa fa-search"></i></button>
                         </div>
                     </div>
@@ -53,18 +51,6 @@
             </div>
         </div>
         <!-- Nav Bar End -->
-        
-        <!-- Breadcrumb Start -->
-        <div class="breadcrumb-wrap">
-            <div class="container">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php">Jaunumi</a></li>
-                    <li class="breadcrumb-item active">Sazinieties ar mums</li>
-                </ul>
-            </div>
-        </div>
-        <!-- Breadcrumb End -->
-        
         <!-- Contact Start -->
         <div class="contact">
             <div class="container">
@@ -112,21 +98,14 @@
             </div>
         </div>
         <!-- Contact End -->
-        
+
         <!-- Footer Start -->
         <?php include("app/include/footer.php"); ?>
         <!-- Footer Bottom End -->
 
-        <!-- Back to Top -->
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/slick/slick.min.js"></script>
 
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
     </body>
 </html>

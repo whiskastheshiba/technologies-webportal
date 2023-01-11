@@ -1,12 +1,11 @@
 <?php
-session_start();
+    session_start();
 
-include "path.php";
+    include "path.php";
 
-unset($_SESSION['id']);
-unset($_SESSION['login']);
-unset($_SESSION['admin']);
+    unset($_SESSION['id']);
+    unset($_SESSION['login']);
+    unset($_SESSION['admin']);
 
-
-header('location: ' . BASE_URL);
+    header('location: ' . BASE_URL);
 ?>

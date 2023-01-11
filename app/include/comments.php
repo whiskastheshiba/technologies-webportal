@@ -1,5 +1,5 @@
 <?php
-include SITE_ROOT . "/app/controllers/commentaries.php";
+    include SITE_ROOT . "/app/controllers/commentaries.php";
 ?>
 <div class="cpl-md-12 col-12 comments">
     <h3>Komentēt</h3>
