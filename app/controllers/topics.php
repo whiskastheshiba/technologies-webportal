@@ -7,6 +7,7 @@
     $description = '';
     $topics = selectAll('topics');
 
+    // Kategoriju izveidošana
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-create'])) {
         $name = trim($_POST['name']); //trims spaces
         $description = trim($_POST['description']);
@@ -39,7 +40,7 @@
         $description = '';
     }
 
-    //edit category
+    // Datu dabūšanas funkcija par konkrēto kategoriju priekš rediģēšanas
     if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         $id = $_GET['id'];
         $topic = selectOne('topics', ['id' => $id]);
@@ -48,6 +49,7 @@
         $description = $topic['description'];
     }
 
+    // Kategoriju rediģēšana
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-edit'])) {
         $id = $_GET['id'];
         $topic = selectOne('topics', ['id' => $id]);
@@ -70,7 +72,7 @@
             header('location: ' . BASE_URL . 'admin/topics/index.php');
         }
     }
-    //delete a category
+    // Kategoriju dzēšana
     if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
         $id = $_GET['del_id'];
         delete('topics', $id);

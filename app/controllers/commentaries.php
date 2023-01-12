@@ -2,7 +2,6 @@
     include_once SITE_ROOT . "/app/database/db.php";
 
     $commentsForAdm = selectAll('comments');
-    //$comments = selectAll('comments', ['page' => $page, 'status' => 1] );
     $email = '';
     $comment = '';
     $text1 = '';
@@ -10,7 +9,7 @@
     $errMsg = [];
     $status = 0;
 
-    // Creating a comment
+    // Komentāru izveidošana
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['goComment'])){
         $page = $_GET['post'];
         $comments = selectAll('comments', ['page' => $page, 'status' => 1] );
@@ -32,7 +31,6 @@
                 'comment' => $comment
             ];
             $comment = insert('comments', $comment);
-            //$comments = selectAll('comments', ['page' => $page, 'status' => 1] );
         }
     }
     else{
@@ -40,14 +38,14 @@
         $comment = '';
     }
 
-    //delete a comment
+    // Komentāru dzēšana
     if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])){
         $id = $_GET['delete_id'];
         delete('comments', $id);
         header('location: ' . BASE_URL . 'admin/comments/index.php');
     }
 
-    // Status change (publish/draft)
+    // Komentāra stāvokļu maiņa (publicēts/nepublicēts)
     if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['pub_id'])){
         $id = $_GET['pub_id'];
         $publish = $_GET['publish'];
@@ -56,7 +54,7 @@
         exit();
     }
 
-    // UPDATE of the comment
+    // Dabūjam komentāra datus priekš rediģēšanas
     if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])){
         $oneComment = selectOne('comments', ['id' => $_GET['id']]);
         $id =  $oneComment['id'];
@@ -65,7 +63,7 @@
         $pub = $oneComment['status'];
     }
 
-    //EDIT comment
+    // Komentāra rediģēšāna
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_comment'])){
         $oneComment = selectOne('comments', ['id' => $_GET['id']]);
         $id =  $_POST['id'];

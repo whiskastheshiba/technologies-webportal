@@ -15,10 +15,10 @@
     $posts = selectAll('posts'); //mass with all posts and topics, which we will use for work
     $postsAdm = selectAllFromPostsWithUsers('posts', 'users');
 
+    //Rakstu izveidošana
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
-        //tt($_FILES);
-        if (!empty($_FILES['img']['name'])) {
-            $imgName = time() . "_" . $_FILES['img']['name'];
+        if (!empty($_FILES['img']['name'])) { // Pārbaudam vai tiek pievnota bilde
+            $imgName = time() . "_" . $_FILES['img']['name']; // Pievienojam datumu pie bildes
             $fileTmpName = $_FILES['img']['tmp_name'];
             $destination = ROOT_PATH . "\assets\posts\\" . $imgName;
             $fileType = $_FILES['img']['type'];
@@ -42,7 +42,7 @@
         $title = trim($_POST['title']); //trims spaces
         $content = trim($_POST['content']);
         $topic = trim($_POST['topic']);
-        $publish = isset($_POST['publish']) ? 1 : 0; //if publish is set then it will be 1, or 0 if not
+        $publish = isset($_POST['publish']) ? 1 : 0;
         if($title === '' || $content === '' || $topic === '') {
             array_push($errMsg, "Visi lauki ir obligāti.");
         
@@ -72,8 +72,8 @@
         $topic = '';
     }
 
-    //edit post
-    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) { //we use method GET and there is ID
+    //GET metode, lai dabūtu datus par rakstiem
+    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         $post = selectOne('posts', ['id' => $_GET['id']]); 
         $id = $post['id'];
         $title = $post['title'];
@@ -82,16 +82,16 @@
         $publish = $post['status'];
     }
 
+    //Raksta rediģēšana, pārbaudam vai metode ir POST un lietotājs uzspieda uz 'edit_post' pogu
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
-        //header('location: ' . BASE_URL . 'admin/posts/edit.php?id=' . $_POST['id']);
         $post = selectOne('posts', ['id' => $_GET['id']]);
         $id = $_POST['id'];
         $title = trim($_POST['title']); //trims spaces
         $content = trim($_POST['content']);
         $topic = trim($_POST['topic']);
-        $publish = isset($_POST['publish']) ? 1 : 0; //if publish is set then it will be 1, or 0 if not
+        $publish = isset($_POST['publish']) ? 1 : 0; // if publish is set then it will be 1, or 0 if not
         
-        if (!empty($_FILES['img']['name'])) {
+        if (!empty($_FILES['img']['name'])) { // Pārabaudam masīvu, vai ir atslēga 'img' un vai šī masīvā ir mūsu attēls
             $imgName = time() . "_" . $_FILES['img']['name'];
             $fileTmpName = $_FILES['img']['tmp_name'];
             $destination = ROOT_PATH . "\assets\posts\\" . $imgName;
@@ -101,7 +101,7 @@
                 array_push($errMsg, "Augšupielādēt var tikai attēlus.");
             }
             else{
-                $result = move_uploaded_file($fileTmpName, $destination);
+                $result = move_uploaded_file($fileTmpName, $destination); // Ja attēls ir, tad kopējam attēlu uz serveri
                 if($result){
                     $_POST['img'] = $imgName;
                 }
@@ -122,7 +122,6 @@
         }
         else {
             $post = [
-
                 'title' => $title,
                 'content' => $content,
                 'img' => $_POST['img'],
@@ -140,7 +139,7 @@
         $topic = isset($_POST['id_topic']) ? $_POST['id_topic'] : '';
     }
 
-    //UPDATE function for 'status' changing
+    //UPDATE metode 'status' mainīšanai(publicēts/nepublicēts)
     if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['pub_id'])) { 
         $id = $_GET['pub_id'];
         $publish = $_GET['publish'];
@@ -149,7 +148,7 @@
         exit();
     }
 
-    //delete a category
+    //Rakstu dzēšana
     if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
         $id = $_GET['delete_id'];
         delete('posts', $id);

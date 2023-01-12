@@ -26,12 +26,12 @@
         
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet"> <!-- social media icons -->
 
-
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
     </head>
 
     <body>
+        <!-- Navigācijas josla un meklēšanas laukums -->
         <?php include("app/include/header.php"); ?>
         <div class="brand">
             <div class="container">
@@ -54,10 +54,11 @@
                 </div>
             </div>
         </div>
+        <!-- Navigācijas josla un meklēšanas laukuma beigums -->
         <div class="cat-news">
             <div class="container">
                 <div class="content row">
-                    <!-- Main Content -->
+                    <!-- Rakstu saraksts no konkrētas kategorijas -->
                     <div class="main-content col-md-9 col-12">
                         <h2>Raksti no kategorijas <strong><?=$category['name']; ?></strong></h2>
                         <?php foreach ($posts as $post): ?>
@@ -85,8 +86,9 @@
                             <?php endforeach; ?>
                         <?php endforeach; ?>
                     </div>
+                    <!-- Rakstu saraksts no konkrētas kategorijas -->
 
-                    <!-- sidebar Content -->
+                    <!-- Kategoriju sākums -->
                     <div class="main content col-md-3 col-12">
                         <div class="sidebar">
                             <div class="sidebar-widget">
@@ -107,6 +109,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Kategoriju beigums -->
                 </div>
             </div>
         </div>

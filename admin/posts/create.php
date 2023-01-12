@@ -86,7 +86,7 @@
                     </div>
                     <div class="row add-post">
                     <?php include "../../app/helps/errorInfo.php"; ?>
-                    <form action="create.php" method="post" enctype="multipart/form-data"> <!-- Will be stored in server's storage !-->
+                    <form action="create.php" method="post" enctype="multipart/form-data"> <!-- Tiks glabāts servera temporary(pagaidu) atmiņā !-->
                         <div class="col mb-4">
                             <input value="<?=$title; ?>" name="title" type="text" class="form-control" placeholder="Nosaukums" aria-label="First name">
                         </div>

@@ -1,10 +1,9 @@
 <?php
     include SITE_ROOT . "/app/database/db.php";
 
-    //$isSubmit = false;
     $errMsg = [];
-    //$regStatus = '';
 
+    // Sesiju izveidošana, kad cilvēks ieiet savā kontā
     function userAuth($user){
         $_SESSION['id'] = $user['id'];
         $_SESSION['login'] = $user['username'];
@@ -19,7 +18,7 @@
 
     $users = selectAll('users');
 
-    // Code for registration form
+    // Reģistrācijas funkcija
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])) {
 
         $admin = 0;
@@ -65,7 +64,7 @@
         $email = '';
     }
 
-    //Code for authorisation from
+    // Autentifikācijas funkcija
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])) {
         $email = trim($_POST['mail']); //trims spaces
         $pass = trim($_POST['password']);
@@ -89,7 +88,7 @@
     else {
         $email = '';
     }
-    // Code for adding an admin user
+    // Lietotāju izveidošanas funkcijas
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-user'])) {
         $admin = 0;
         $login = trim($_POST['login']); //trims spaces
@@ -142,7 +141,7 @@
         header('location: ' . BASE_URL . 'admin/users/index.php');
     }
 
-    //USER EDIT IN ADMIN PANEL
+    // Dabūjam datus priekš rediģēšanas
     if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['edit_id'])) {
         $user = selectOne('users', ['id' => $_GET['edit_id']]);
         $id = $user['id'];
@@ -151,8 +150,9 @@
         $email = $user['email'];
     }
 
+    // Lietotāju rediģēšana
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update-user'])) {
-        $user = selectOne('users', ['id' => $_GET['edit_id']]); //added for the future need to be rechecked
+        $user = selectOne('users', ['id' => $_GET['edit_id']]); 
         $username = $user['username'];
         $id = $_POST['id'];
         //$mail = trim($_POST['mail']); //trims spaces
@@ -187,19 +187,9 @@
             header('location: ' . BASE_URL . 'admin/users/index.php');
 
         }    
-    }else {
-        
+    }
+    else {
         $login = '';
         $email = '';
-    }
-
-    //UPDATE function for 'status' changing
-    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['pub_id'])) { 
-        $id = $_GET['pub_id'];
-        $publish = $_GET['publish'];
-
-        $postId = update('posts', $id, ['status' => $publish]);
-        header('location: ' . BASE_URL . 'admin/posts/index.php');
-        exit();
     }
 ?>

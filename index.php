@@ -2,10 +2,10 @@
     include "path.php";
     include "app/controllers/topics.php";
 
-    $page = isset($_GET['page']) ? $_GET['page']: 1;
-    $limit = 4;
-    $offset = $limit * ($page - 1);
-    $total_pages = round(countRow('posts') / $limit, 0);
+    $page = isset($_GET['page']) ? $_GET['page']: 1; // Ja parametra 'page' nav tad pēc noklusējuma 'page' būs 1
+    $limit = 4; // Rakstu skaits galvenā lapā
+    $offset = $limit * ($page - 1); // Pārbaude, cik rakstu izlaist
+    $total_pages = round(countRow('posts') / $limit, 0); // Dalām rindu skaitu ar limitu, lai saprastu, cik lappuses mums kopā ir
     $postsDescOrder = showPostsInDescOrder('posts');
     $postsRandom = showRandomPosts('posts');
     $posts = selectAllFromPostsWithUsersOnIndex('posts', 'users', $limit, $offset); //only published posts should be shown

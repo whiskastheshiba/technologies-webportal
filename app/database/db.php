@@ -2,6 +2,7 @@
     session_start(); 
     require('connect.php');
 
+    // Funkcija priekš testēšanas, lai izvadītu datus
     function tt($value) {
         echo '<pre>';
         print_r($value);
@@ -18,6 +19,7 @@
         return true;
     }
 
+    // Visu rakstu datu saņemšana
     function selectAll($table, $params = []) {
         global $pdo;
         $sql = "SELECT * FROM $table";
@@ -42,6 +44,7 @@
         return $query->fetchAll();
     }
 
+    // Viena konkrēta datubāzes raksta saņemšana
     function selectOne($table, $params = []) {
         global $pdo;
         $sql = "SELECT * FROM $table";
@@ -66,7 +69,7 @@
         return $query->fetch();
     }
 
-    //INSERT to the database
+    // Funkcija priekš ievietošanas datubāzē
     function insert($table, $params) {
         global $pdo;
         $i = 0;
@@ -92,7 +95,7 @@
         return $pdo->lastInsertId();
     }
 
-    //UPDATE function
+    // Atajunošanas funkcija
     function update($table, $id, $params) {
         global $pdo;
         $i = 0;
@@ -119,7 +122,7 @@
     update('users', 14, $param);
 
 
-    //DELETE function
+    // Dzēšanas funkcija
     function delete($table, $id) {
         global $pdo;
         $sql = "DELETE FROM $table WHERE id = $id";
@@ -128,7 +131,7 @@
         dbCheckError($query);
     }
 
-    //Posts with username name in admin panel (JOIN)
+    // JOIN funkcija ar rakstu un lietotāju tabulām autora radīšanai
     function selectAllFromPostsWithUsers($table1, $table2){
         global $pdo;
         $sql = "
@@ -148,7 +151,7 @@
         return $query->fetchAll();
     }
 
-    // JOIN function with author of posts for index.php page
+    // JOIN funkcija priekš autora radīšanas izmantojot paģināciju
     function selectAllFromPostsWithUsersOnIndex($table1, $table2, $limit, $offset){
         global $pdo;
         $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.status=1 ORDER by p.created_date DESC LIMIT $limit OFFSET $offset";
@@ -158,7 +161,7 @@
         return $query->fetchAll();
     }
 
-    //Post with author for single.php page
+    // Autora radīšana pie raksta
     function selectPostFromPostsWithUsersOnSingle($table1, $table2, $id){
         global $pdo;
         $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.id=$id";
@@ -168,18 +171,7 @@
         return $query->fetch();
     }
 
-
-    function selectTopTopicFromPostsOnIndex($table1){
-        global $pdo;
-        $sql = "SELECT * FROM $table1 WHERE id_topic = 18";
-        $query = $pdo->prepare($sql);
-        $query->execute();
-        dbCheckError($query);
-        return $query->fetchAll();
-
-    }
-
-    //Search function
+    // Meklēšanas funkcija
     function seacrhInTitileAndContent($text, $table1, $table2){
         $text = trim(strip_tags(stripcslashes(htmlspecialchars($text))));
         global $pdo;
@@ -196,16 +188,17 @@
         return $query->fetchAll();
     }
 
-    // Count row in the table (for pagination)
+    // Rindu skaitīšana tabulā (lapu šķirošanai)
     function countRow($table){
         global $pdo;
         $sql = "SELECT Count(*) FROM $table WHERE status = 1";
         $query = $pdo->prepare($sql);
         $query->execute();
         dbCheckError($query);
-        return $query->fetchColumn();
+        return $query->fetchColumn(); // Atgriež vienu kolonnu no rezultātu kopas
     }
 
+    // Funkcija priekš skatītāju skaitu atjaunošanas
     function views_update ($id) {
         global $pdo;
         $sql = "UPDATE posts SET views = views + 1 WHERE id = $id";
@@ -214,6 +207,7 @@
         dbCheckError($query);
     }
 
+    // Funkcija priekš rakstu šķirošanas pa datumu dilstošā secība 
     function showPostsInDescOrder ($table1) {
         global $pdo;
         $sql = "SELECT * FROM $table1 WHERE status = 1 ORDER by views DESC LIMIT 5";
@@ -224,6 +218,7 @@
 
     }
 
+    // Funkcija priekš rakstu šķirošanas nejaušā secībā
     function showRandomPosts ($table1) {
         global $pdo;
         $sql = "SELECT * FROM $table1 WHERE status = 1 ORDER by RAND() LIMIT 5";
@@ -233,6 +228,7 @@
         return $query->fetchAll();
     }
 
+    // Funkcija priekš rakstu radīšanas pēc kategorijām galvenā lapā
     function showPostsByCategoriesOnMainPage ($table1) {
         global $pdo;
         $sql = "SELECT * FROM $table1 WHERE status = 1 ORDER by views";

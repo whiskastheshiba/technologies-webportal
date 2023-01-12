@@ -27,7 +27,7 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <!-- Top Bar Start -->
+        <!-- Navigācijas joslas sākums -->
         <?php include("app/include/header.php"); ?>
         <div class="brand">
             <div class="container">
@@ -50,8 +50,8 @@
                 </div>
             </div>
         </div>
-        <!-- Nav Bar End -->
-        <!-- Contact Start -->
+        <!-- Navigācijas joslas beigums -->
+        <!-- Kontaktu formas sākums -->
         <div class="contact">
             <div class="container">
                 <div class="row align-items-center">
@@ -97,15 +97,8 @@
                 </div>
             </div>
         </div>
-        <!-- Contact End -->
-
-        <!-- Footer Start -->
+        <!-- Kontaktu formas beigums -->
         <?php include("app/include/footer.php"); ?>
-        <!-- Footer Bottom End -->
-
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-
     </body>
 </html>
