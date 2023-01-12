@@ -9,6 +9,7 @@
     $postsDescOrder = showPostsInDescOrder('posts');
     $postsRandom = showRandomPosts('posts');
     $posts = selectAllFromPostsWithUsersOnIndex('posts', 'users', $limit, $offset); //only published posts should be shown
+    $postsByCategories = showPostsByCategoriesOnMainPage('posts');
 ?>
 
 <!DOCTYPE html>
@@ -177,10 +178,10 @@
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="row">
-                            <?php $category = selectOne('topics', ['id' => '2']); ?>
+                            <?php $category = selectOne('topics', ['id' => '10']); ?>
                             <h2><?=$category['name']; ?></h2>
-                            <?php foreach ($posts as $post): ?>
-                                <?php if($post['id_topic'] == 2): ?>
+                            <?php foreach ($postsByCategories as $post): ?>
+                                <?php if($post['id_topic'] == 10): ?>
                                     <div class="col-md-4">
                                         <div class="mn-img">
                                             <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
@@ -192,7 +193,61 @@
                                                 <?php endif; ?>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>                     
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <?php $category = selectOne('topics', ['id' => '11']); ?>
+                            <h2><?=$category['name']; ?></h2>
+                            <?php foreach ($postsByCategories as $post): ?>
+                                <?php if($post['id_topic'] == 11): ?>
+                                    <div class="col-md-4">
+                                        <div class="mn-img">
+                                            <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                                            <div class="mn-title">
+                                                <?php if(strlen($post['title']) > 80): ?>
+                                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                                <?php else: ?>
+                                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=$post['title']?></a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>                     
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <?php $category = selectOne('topics', ['id' => '12']); ?>
+                            <h2><?=$category['name']; ?></h2>
+                            <?php foreach ($postsByCategories as $post): ?>
+                                <?php if($post['id_topic'] == 12): ?>
+                                    <div class="col-md-4">
+                                        <div class="mn-img">
+                                            <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                                            <div class="mn-title">
+                                                <?php if(strlen($post['title']) > 80): ?>
+                                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                                <?php else: ?>
+                                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=$post['title']?></a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>                     
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <?php $category = selectOne('topics', ['id' => '13']); ?>
+                            <h2><?=$category['name']; ?></h2>
+                            <?php foreach ($postsByCategories as $post): ?>
+                                <?php if($post['id_topic'] == 13): ?>
+                                    <div class="col-md-4">
+                                        <div class="mn-img">
+                                            <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                                            <div class="mn-title">
+                                                <?php if(strlen($post['title']) > 80): ?>
+                                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                                <?php else: ?>
+                                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=$post['title']?></a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>                     
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </div>

@@ -284,3 +284,8 @@ body {
 .posts .post .id{
     font-weight: bold;
 }
+
+.error-message {
+    color: red;
+    font-style: italic;
+}

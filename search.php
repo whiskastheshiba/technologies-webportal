@@ -60,30 +60,32 @@
                     <div class="main-content col-12">
                         <h2>Meklēšanas '<?=$_POST['search-term'] ;?>' rezultāts</h2>
                         <?php foreach ($posts as $post): ?>
-                            <div class="post row">
-                                <div class="img col-12 col-md-4">
-                                    <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
-                                </div>
-                                <div class="post_text col-12 col-md-8">
-                                    <h3>
-                                    <?php if(strlen($post['title']) > 80): ?>
+                            <?php if($post['status'] == 1): ?>
+                                <div class="post row">
+                                    <div class="img col-12 col-md-4">
+                                        <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
+                                    </div>
+                                    <div class="post_text col-12 col-md-8">
                                         <h3>
-                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                        <?php if(strlen($post['title']) > 80): ?>
+                                            <h3>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                            </h3>
+                                        <?php else: ?>
+                                            <h3>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=$post['title'] ?></a>
+                                            </h3>
+                                        <?php endif; ?>
                                         </h3>
-                                    <?php else: ?>
-                                        <h3>
-                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=$post['title'] ?></a>
-                                        </h3>
-                                    <?php endif; ?>
-                                    </h3>
-                                    <i class="far fa-user"> <?=$post['username'];?></i>
-                                    <i class="far fa-calendar"> <?=$post['created_date'];?></i>
-                                    <i class="far fa-calendar"> <?=$post['views'];?></i>
-                                    <p class="preview-text">
-                                        <?=mb_substr($post['content'], 0, 55, 'UTF-8'). '...'  ?>
-                                    </p>
+                                        <i class="far fa-user"> <?=$post['username'];?></i>
+                                        <i class="far fa-calendar"> <?=$post['created_date'];?></i>
+                                        <i class="far fa-calendar"> <?=$post['views'];?></i>
+                                        <p class="preview-text">
+                                            <?=mb_substr($post['content'], 0, 55, 'UTF-8'). '...'  ?>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 </div>

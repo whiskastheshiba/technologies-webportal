@@ -216,7 +216,7 @@
 
     function showPostsInDescOrder ($table1) {
         global $pdo;
-        $sql = "SELECT * FROM $table1 ORDER by views DESC LIMIT 5";
+        $sql = "SELECT * FROM $table1 WHERE status = 1 ORDER by views DESC LIMIT 5";
         $query = $pdo->prepare($sql);
         $query->execute();
         dbCheckError($query);
@@ -226,11 +226,21 @@
 
     function showRandomPosts ($table1) {
         global $pdo;
-        $sql = "SELECT * FROM $table1 ORDER by RAND() LIMIT 5";
+        $sql = "SELECT * FROM $table1 WHERE status = 1 ORDER by RAND() LIMIT 5";
         $query = $pdo->prepare($sql);
         $query->execute();
         dbCheckError($query);
         return $query->fetchAll();
+    }
+
+    function showPostsByCategoriesOnMainPage ($table1) {
+        global $pdo;
+        $sql = "SELECT * FROM $table1 WHERE status = 1 ORDER by views";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        dbCheckError($query);
+        return $query->fetchAll();
+
     }
 
 ?>

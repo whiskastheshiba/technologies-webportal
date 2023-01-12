@@ -1080,12 +1080,6 @@ button.btn:hover {
 FORMS
 */
 
-li .err {
-    color: red;
-    font-style: italic;
-    font-size: 0.8rem;
-}
-
 input{
     padding: 10px 12px;
     display: block;
@@ -1121,15 +1115,14 @@ FORMS
 }
  .mn-img {
     object-fit: cover;
-    height: 50px;
+    height: 200px;
 }
 
  .mn-img img {
     object-fit: cover;
-    height: 50px;
-    width: 300px;
+    height: 200px;
+    width: auto;
 }
-
 
  .tn-title {
     padding: 10px 15px;
@@ -1177,4 +1170,9 @@ COMMENTS
 .img-thumbnail{
     width: 100%;
     height: auto;
+}
+
+.error-message {
+    color: red;
+    font-style: italic;
 }

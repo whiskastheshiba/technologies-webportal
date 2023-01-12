@@ -122,7 +122,7 @@
         }
         else {
             $post = [
-                'id_user' => $_SESSION['id'],
+
                 'title' => $title,
                 'content' => $content,
                 'img' => $_POST['img'],
