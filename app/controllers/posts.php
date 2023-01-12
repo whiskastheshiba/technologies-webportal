@@ -84,6 +84,7 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
         //header('location: ' . BASE_URL . 'admin/posts/edit.php?id=' . $_POST['id']);
+        $post = selectOne('posts', ['id' => $_GET['id']]);
         $id = $_POST['id'];
         $title = trim($_POST['title']); //trims spaces
         $content = trim($_POST['content']);

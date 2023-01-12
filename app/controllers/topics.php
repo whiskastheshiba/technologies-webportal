@@ -12,7 +12,7 @@
         $description = trim($_POST['description']);
 
         if($name === '' || $description === '') {
-            array_push($errMsg, "Visi lauki ir obligāti.”");
+            array_push($errMsg, "Visi lauki ir obligāti.");
         }
         elseif (mb_strlen($name, 'UTF8') <2){
             array_push($errMsg, "Nosaukumam ir jābūt lielākam par 2 simboliem");
@@ -49,6 +49,8 @@
     }
 
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-edit'])) {
+        $id = $_GET['id'];
+        $topic = selectOne('topics', ['id' => $id]);
         $name = trim($_POST['name']); //trims spaces
         $description = trim($_POST['description']);
 

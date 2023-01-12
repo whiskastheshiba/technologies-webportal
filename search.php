@@ -46,8 +46,8 @@
                         <div class="b-search">
                             <form action="search.php" method="post">
                                 <input type="text" name="search-term" class="text-input" placeholder="Ievādiet kādu vārdu...">
+                                <button><i name="search-term" class="fa fa-search"></i></button>
                             </form>
-                            <button><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,15 @@
                                 </div>
                                 <div class="post_text col-12 col-md-8">
                                     <h3>
-                                        <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                    <?php if(strlen($post['title']) > 80): ?>
+                                        <h3>
+                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                        </h3>
+                                    <?php else: ?>
+                                        <h3>
+                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=$post['title'] ?></a>
+                                        </h3>
+                                    <?php endif; ?>
                                     </h3>
                                     <i class="far fa-user"> <?=$post['username'];?></i>
                                     <i class="far fa-calendar"> <?=$post['created_date'];?></i>

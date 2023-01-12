@@ -50,8 +50,8 @@
                         <div class="b-search">
                             <form action="search.php" method="post">
                                 <input type="text" name="search-term" class="text-input" placeholder="Ievādiet kādu vārdu...">
+                                <button><i name="search-term" class="fa fa-search"></i></button>
                             </form>
-                            <button><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -70,9 +70,15 @@
                                     <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
                                 </div>
                                 <div class="post_text col-12 col-md-8">
-                                    <h3>
-                                        <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
-                                    </h3>
+                                    <?php if(strlen($post['title']) > 80): ?>
+                                        <h3>
+                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                        </h3>
+                                    <?php else: ?>
+                                        <h3>
+                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=$post['title'] ?></a>
+                                        </h3>
+                                    <?php endif; ?>
                                     <i class="far fa-user"> <?=$post['username'];?></i>
                                     <i class="far fa-calendar"> <?=$post['created_date'];?></i>
                                     <i class="far fa-eye"> <?=$post['views'];?></i>
@@ -94,7 +100,11 @@
                                     <ul>
                                         <?php foreach ($topics as $key => $topic): ?>
                                             <li>
-                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
+                                            <?php if(strlen($topic['name']) > 30): ?>
+                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=substr($topic['name'], 0, 30) . '...'  ?></a>
+                                            <?php else: ?>
+                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']?></a>
+                                            <?php endif; ?>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
@@ -121,7 +131,11 @@
                                             <img src="<?=BASE_URL . 'assets/posts/' . $postsD['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
                                         </div>
                                         <div class="tn-title">
-                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=substr($postsD['title'], 0, 80) . '...'  ?></a>
+                                            <?php if(strlen($postsD['title']) > 80): ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=substr($postsD['title'], 0, 80) . '...'  ?></a>
+                                            <?php else: ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=$postsD['title']?></a>
+                                            <?php endif; ?>
                                             <i class="far fa-eye"> <?=$postsD['views'];?></i>
                                         </div>
                                     </div>
@@ -143,8 +157,12 @@
                                             <img src="<?=BASE_URL . 'assets/posts/' . $postsR['img'] ?>" alt="<?=$postsR['title']?>" class="img-thumbnail">
                                         </div>
                                         <div class="tn-title">
-                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=substr($postsR['title'], 0, 80) . '...'  ?></a>
-                                                <i class="far fa-eye"> <?=$postsR['views'];?></i>
+                                            <?php if(strlen($postsR['title']) > 80): ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=substr($postsR['title'], 0, 80) . '...'  ?></a>
+                                            <?php else: ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=$postsR['title']?></a>
+                                            <?php endif; ?>
+                                            <i class="far fa-eye"> <?=$postsR['views'];?></i>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
@@ -167,7 +185,11 @@
                                         <div class="mn-img">
                                             <img src="<?=BASE_URL . 'assets/posts/' . $post['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
                                             <div class="mn-title">
-                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                                <?php if(strlen($post['title']) > 80): ?>
+                                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                                <?php else: ?>
+                                                    <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=$post['title']?></a>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>

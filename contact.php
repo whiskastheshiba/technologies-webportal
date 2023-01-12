@@ -43,8 +43,8 @@
                         <div class="b-search">
                             <form action="search.php" method="post">
                                 <input type="text" name="search-term" class="text-input" placeholder="Ievādiet kādu vārdu...">
+                                <button><i name="search-term" class="fa fa-search"></i></button>
                             </form>
-                            <button><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>

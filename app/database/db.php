@@ -92,14 +92,6 @@
         return $pdo->lastInsertId();
     }
 
-
-    $arrData = [
-        'admin' => '0',
-        'username' => 'andreika',
-        'email' => 'tert@re.ru',
-        'password' => '1dadadadad'
-    ];
-
     //UPDATE function
     function update($table, $id, $params) {
         global $pdo;

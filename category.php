@@ -3,7 +3,6 @@
     include "app/controllers/topics.php";
     
     $posts = selectAll('posts', ['id_topic' => $_GET['id']]);
-    $topTopic = selectTopTopicFromPostsOnIndex('posts');
     $category = selectOne('topics', ['id' => $_GET['id']]);
     
 ?>
@@ -48,8 +47,8 @@
                         <div class="b-search">
                             <form action="search.php" method="post">
                                 <input type="text" name="search-term" class="text-input" placeholder="Ievadiet kādu vārdu...">
+                                <button><i name="search-term" class="fa fa-search"></i></button>
                             </form>
-                            <button><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -70,7 +69,11 @@
                                     </div>
                                     <div class="post_text col-12 col-md-8">
                                         <h3>
-                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                            <?php if(strlen($post['title']) > 80): ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=substr($post['title'], 0, 80) . '...'  ?></a>
+                                            <?php else: ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $post['id'];?>"><?=$post['title']?></a>
+                                            <?php endif; ?>
                                         </h3>
                                         <i class="far fa-user"> <?=$user['username'];?></i>
                                         <i class="far fa-calendar"> <?=$post['created_date'];?></i>
@@ -92,7 +95,11 @@
                                     <ul>
                                         <?php foreach ($topics as $key => $topic): ?>
                                             <li>
-                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
+                                            <?php if(strlen($topic['name']) > 30): ?>
+                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=substr($topic['name'], 0, 30) . '...'  ?></a>
+                                            <?php else: ?>
+                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']?></a>
+                                            <?php endif; ?>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>

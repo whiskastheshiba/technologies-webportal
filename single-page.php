@@ -4,6 +4,8 @@
     if(!$_SESSION){
         header('location: ' . BASE_URL . "log.php");
     }
+    $page = $_GET['post'];
+    $comments = selectAll('comments', ['page' => $page, 'status' => 1] );
     $postsDescOrder = showPostsInDescOrder('posts');
     $postsRandom = showRandomPosts('posts');
     views_update($_GET['post']);
@@ -45,8 +47,8 @@
                         <div class="b-search">
                         <form action="search.php" method="post">
                             <input type="text" name="search-term" class="text-input" placeholder="Ievadiet kādu vārdu...">
+                            <button><i name="search-term" class="fa fa-search"></i></button>
                         </form>
-                            <button><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -91,7 +93,11 @@
                                     <ul>
                                         <?php foreach ($topics as $key => $topic): ?>
                                             <li>
-                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
+                                            <?php if(strlen($topic['name']) > 30): ?>
+                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=substr($topic['name'], 0, 30) . '...'  ?></a>
+                                            <?php else: ?>
+                                                <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']?></a>
+                                            <?php endif; ?>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
@@ -121,7 +127,11 @@
                                             <img src="<?=BASE_URL . 'assets/posts/' . $postsD['img'] ?>" alt="<?=$post['title']?>" class="img-thumbnail">
                                         </div>
                                         <div class="tn-title">
-                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=substr($postsD['title'], 0, 80) . '...'  ?></a>
+                                            <?php if(strlen($postsD['title']) > 80): ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=substr($postsD['title'], 0, 80) . '...'  ?></a>
+                                            <?php else: ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $postsD['id'];?>"><?=$postsD['title']?></a>
+                                            <?php endif; ?>
                                             <i class="far fa-eye"> <?=$postsD['views'];?></i>
                                         </div>
                                     </div>
@@ -143,7 +153,11 @@
                                             <img src="<?=BASE_URL . 'assets/posts/' . $postsR['img'] ?>" alt="<?=$postsR['title']?>" class="img-thumbnail">
                                         </div>
                                         <div class="tn-title">
-                                            <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=substr($postsR['title'], 0, 80) . '...'  ?></a>
+                                            <?php if(strlen($postsR['title']) > 80): ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=substr($postsR['title'], 0, 80) . '...'  ?></a>
+                                            <?php else: ?>
+                                                <a href="<?=BASE_URL . 'single-page.php?post=' . $postsR['id'];?>"><?=$postsR['title']?></a>
+                                            <?php endif; ?>
                                             <i class="far fa-eye"> <?=$postsR['views'];?></i>
                                         </div>
                                     </div>

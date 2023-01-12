@@ -1080,7 +1080,7 @@ button.btn:hover {
 FORMS
 */
 
-form div.err {
+li .err {
     color: red;
     font-style: italic;
     font-size: 0.8rem;
@@ -1119,12 +1119,17 @@ FORMS
     margin-left: 55px;
     transition: all .3s;
 }
-
-.mn-img img {
+ .mn-img {
     object-fit: cover;
-    height: 150px;
+    height: 50px;
+}
+
+ .mn-img img {
+    object-fit: cover;
+    height: 50px;
     width: 300px;
 }
+
 
  .tn-title {
     padding: 10px 15px;

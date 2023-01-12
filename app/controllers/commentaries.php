@@ -2,17 +2,18 @@
     include_once SITE_ROOT . "/app/database/db.php";
 
     $commentsForAdm = selectAll('comments');
-    $page = $_GET['post'];
+    //$comments = selectAll('comments', ['page' => $page, 'status' => 1] );
     $email = '';
     $comment = '';
     $text1 = '';
     $pub = '';
     $errMsg = [];
     $status = 0;
-    $comments = selectAll('comments', ['page' => $page, 'status' => 1] );
 
     // Creating a comment
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['goComment'])){
+        $page = $_GET['post'];
+        $comments = selectAll('comments', ['page' => $page, 'status' => 1] );
         $email = trim($_POST['email']);
         $comment = trim($_POST['comment']);
 
@@ -24,9 +25,6 @@
         }
         else{
             $user = selectOne('users', ['email' => $email]);
-            if ($user['email'] == $email && $user['admin'] == 1){
-                $status = 1;
-            }
             $comment = [
                 'status' => $status,
                 'page' => $page,
@@ -34,13 +32,12 @@
                 'comment' => $comment
             ];
             $comment = insert('comments', $comment);
-            $comments = selectAll('comments', ['page' => $page, 'status' => 1] );
+            //$comments = selectAll('comments', ['page' => $page, 'status' => 1] );
         }
     }
     else{
         $email = '';
         $comment = '';
-        $comments = selectAll('comments', ['page' => $page, 'status' => 1] );
     }
 
     //delete a comment
@@ -68,7 +65,9 @@
         $pub = $oneComment['status'];
     }
 
+    //EDIT comment
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_comment'])){
+        $oneComment = selectOne('comments', ['id' => $_GET['id']]);
         $id =  $_POST['id'];
         $text = trim($_POST['content']);
         $publish = isset($_POST['publish']) ? 1 : 0;

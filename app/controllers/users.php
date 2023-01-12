@@ -116,8 +116,8 @@
             }
             else {
                 $pass = password_hash($passF, PASSWORD_DEFAULT);
-                if (isset($_POST['admin'])){
-                    $admin = 1;
+                if (isset($_POST['author'])){
+                    $admin = 2;
                 };
                 $user = [
                     'admin' => $admin,
@@ -127,10 +127,7 @@
                 ];
                 $id = insert('users', $user);
                 $user = selectOne('users', ['id' => $id]);
-
-                userAuth($user);
-                //$last_row = selectOne('users',  ['id' => $id]);
-                //tt($post);
+                header('location: ' . BASE_URL . 'admin/users/index.php');
             }
         }
     }
@@ -165,7 +162,7 @@
         $admin = isset($_POST['admin']) ? 1 : 0; //if publish is set then it will be 1, or 0 if not
 
         if($login === '') {
-            array_push($errMsg, "Visi lauki ir obligāti.");
+            array_push($errMsg, "Lietotājvārds ir obligāts.");
 
         }elseif (mb_strlen($login, 'UTF8') <2){
             array_push($errMsg, "Lietotājvārdam ir jābūt garākām par 2 simboliem.");
@@ -180,13 +177,12 @@
             if (isset($_POST['author'])){
                 $admin = 2;
             };
-            
+          
             $user = [
                 'admin' => $admin,
                 'username' => $login,
                 'password' => $pass
             ];
-
             $user = update('users', $id, $user);
             header('location: ' . BASE_URL . 'admin/users/index.php');
 

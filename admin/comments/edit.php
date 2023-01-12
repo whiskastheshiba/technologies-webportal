@@ -40,11 +40,11 @@
                     <form action="<?=BASE_URL . "admin/comments/edit.php?id=$id"?>" method="post" > <!-- Will be stored in server's storage !-->
                         <input type="hidden" name="id" value="<?=$id;?>">
                         <div class="col mb-4">
-                            <input value="<?=$email; ?>" readonly name="title" type="text" class="form-control" placeholder="Title" aria-label="First name">
+                            <input value="<?=$oneComment['email']; ?>" readonly name="title" type="text" class="form-control" placeholder="Title" aria-label="First name">
                         </div>
                         <div class="col">
                             <label for="editor" class="form-label">Komentārs</label>
-                            <textarea name="content" id="editor" class="form-control" rows="6"><?=$text1; ?></textarea>
+                            <textarea name="content" id="editor" class="form-control" rows="6"><?=$oneComment['comment']; ?></textarea>
                         </div>
                         <div class="form-check">
                             <?php if($pub) $checked = "checked"; else $checked = "";?>

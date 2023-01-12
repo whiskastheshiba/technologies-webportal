@@ -48,11 +48,11 @@
                     <form action="<?=BASE_URL . "admin/topics/edit.php?id=$id"?>" method="post">
                         <input name="id" value="<?=$id;?>" type="hidden">
                         <div class="col">
-                            <input name="name" value="<?=$name;?>" type="text" class="form-control" placeholder="Title" aria-label="Name of topic">
+                            <input name="name" value="<?=$topic['name'];?>" type="text" class="form-control" placeholder="Title" aria-label="Name of topic">
                         </div>
                         <div class="col">
                             <label for="content" class="form-label">Kategorju apraksts</label>
-                            <textarea name="description" class="form-control" id="content" rows="3"><?=$description;?></textarea>
+                            <textarea name="description" class="form-control" id="content" rows="3"><?=$topic['description'];?></textarea>
                         </div>
                         <div class="col">
                             <button name="topic-edit"class="btn btn-primary" type="submit">Rediģēt kategoriju</button>

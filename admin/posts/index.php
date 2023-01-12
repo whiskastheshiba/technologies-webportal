@@ -48,7 +48,11 @@
                 <?php foreach ($postsAdm as $key => $post): ?>
                     <div class="row post">
                         <div class="id col-1"><?=$key +1; ?></div>
-                        <div class="title col-5"><?=mb_substr($post['title'], 0, 50, 'UTF-8'). '...'  ?></div>
+                        <?php if(strlen($post['title']) > 50): ?>
+                            <div class="title col-5"><?=mb_substr($post['title'], 0, 50, 'UTF-8'). '...'  ?></div>
+                        <?php else: ?>
+                            <div class="title col-5"><?=$post['title']; ?></div>
+                        <?php endif; ?>
                         <?php if(strlen($post['username']) > 10): ?>
                             <div class="author col-2"><?=mb_substr($post['username'], 0, 10, 'UTF-8'). '...'  ?></div>
                         <?php else: ?>

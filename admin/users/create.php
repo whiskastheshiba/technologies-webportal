@@ -60,10 +60,12 @@
                                 <label for="exampleInputPassword2" class="form-label">Atkārtojiet paroli</label>
                                 <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2" placeholder="atkārtojiet paroli...">
                             </div>
-                            <input name="admin" class="form-check-input" type="checkbox" id="flexCheckChecked" value='1'>
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Admin?
-                            </label>
+                            <div class="col">
+                                <input name="author" class="form-check-input" type="checkbox" id="flexCheckChecked" value='2'>
+                                <label class="form-check-label" for="flexCheckChecked">
+                                    Autors?
+                                </label>
+                            </div>
                             <div class="col">
                                 <button name="create-user" class="btn btn-primary" type="submit">Izveidot</button>
                             </div>
