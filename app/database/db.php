@@ -58,7 +58,7 @@
                     $sql = $sql . " WHERE $key = $value";
                 }
                 else {
-                    $sql = $sql . " AND $key = $value";
+                    $sql = $sql . " AND $key = $value"; //Ja ir vairāk par vienu parametru tad pievienojam AND
                 }
                 $i++;
             }
@@ -73,14 +73,14 @@
     function insert($table, $params) {
         global $pdo;
         $i = 0;
-        $coll = '';
-        $mask = '';
+        $coll = ''; //column
+        $mask = ''; //column variable
         foreach ($params as $key => $value){
-            if ($i === 0){
+            if ($i === 0){ //Ja mums ir 1 parametrs mums nevajag komatu vaicājumā
                 $coll = $coll . "$key";
                 $mask = $mask."'" . "$value"."'";
             }
-            else {
+            else { //Vairāk par 1 parametru pievienojam komatu vaicājumā, lai pievienotu pie atslēgas vērtību
                 $coll = $coll . ", $key";
                 $mask = $mask.", '". "$value"."'";
             }
